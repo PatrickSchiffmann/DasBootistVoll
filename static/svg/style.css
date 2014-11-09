@@ -1,0 +1,762 @@
+  body {
+    padding: 0;
+    margin: 0;
+    font-family: "Kalinga", "Verdana", sans-serif;
+    font-size: 1rem;
+    font-weight: bolder;
+  }
+	
+#panelwrapper {
+    padding: 1%;
+    width: 25%;
+	height:95%;
+	float:right;
+  }
+  
+  #boardwrap {
+    width: 50%;
+	margin-left:20%;
+    height: 100%;
+    float:left;
+  }
+
+  #boardwrap table {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    table-layout: fixed;
+  }
+  
+  .noPointer {
+    cursor: default !important;
+  }
+
+  #boardwrap td {
+    cursor: pointer;
+  }
+  
+ #controlwrap {
+	margin-left: 25%;
+	margin-top:10%;
+    width: 50%;
+	background: rgba(255, 0, 0, 0.75);
+  }
+  
+ .control {
+    background-color:#ddd;
+    margin-bottom:0.25%;
+  }
+
+ .headline {
+    font-weight: bold;
+    font-size: 1.5rem;
+    width: 100%;
+    height: 5%;
+    float: left;
+    background-color: #ddd;
+  }
+  
+ #portrait {
+    width:auto;
+    float:left
+  }
+  
+  #info {
+	background-image: url('media/logo.jpg');
+	background-size: 100% 100%;
+    background-repeat:no-repeat;
+	width:100%;
+    height:100%;
+    text-align:center;
+  }
+
+  #chooseCharacter {
+    background-color:#DDD;
+    width:100%;
+    height:100%;
+    text-align:center;
+    list-style-type: none;
+  }
+
+  #chooseRoom {
+    background-color: #DDD;
+    width: 94%;
+    height: 94%;
+    text-align:center;
+  }
+
+  .grayBg {
+    background-color: #ddd;
+  }
+
+  #leftRooms {
+    background-color: #ddd;
+    width: 50%;
+    height: 85%;
+    float: left;
+    text-align:center;
+  }
+
+  #rightRooms {
+    background-color: #ddd;
+    width: 50%;
+    height: 85%;
+    float: left;
+    text-align:center;
+  }
+
+  .roomList {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  .roomList li {
+    border-radius:10px;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAAC58), to(#F3F781));
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    margin: 0;
+    width: 50%;
+    cursor: pointer;
+    background-color:#EEE;
+    margin-bottom: 0.5rem;
+  }
+
+  #leftRooms li {
+    margin-left: 47.5%;
+  }
+
+  #rightRooms li {
+    margin-left: 2.5%;
+  }
+
+  .roomList li:hover {
+    color: white;
+    font-weight: bold;
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#249ee4), to(#057cc0));
+  }
+  
+  .bgPicture {
+    background-image: url('media/logo.jpg'); 
+    background-size:100% auto;
+  }
+
+  #playerlistwrapper {
+    padding:0.5%;
+    height:10%;
+  }
+  
+  #playerlistwrapper img {
+    padding:0;
+    margin:0;
+    margin-right:1;
+  }
+  
+  #funfacts {
+  
+  }
+
+#chooseCharacterLeft {
+  width: 50%;
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+
+#chooseCharacter li {
+  width: 80%;
+  float: left;
+}
+
+#chooseCharacter li {
+  border-radius: 10px;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAAC58), to(#F3F781));
+  margin: 0;
+  margin-left: 10%;
+  cursor: pointer;
+  background-color:#EEE;
+  margin-bottom: 0.2rem;
+}
+
+#chooseCharacter li:hover {
+  color: white;
+  font-weight: bold;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#249ee4), to(#057cc0));
+}
+
+
+#chooseCharacterRight {
+  width: 50%;
+  float: left;
+}
+  .characterList {
+    color: red;
+    float: left;
+    width: 60%;
+  }
+
+  .characterList li {
+    color: red;
+    background-color: #EEE;
+    margin-bottom: 2px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .field {
+    background-color: none;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .fieldTextBuffer {
+    background-color: none;
+    height: 20%;
+  }
+
+  .fieldText {
+    margin: 0;
+    padding: 0;
+    background-color: none;
+    height: 50%;
+    font-size: 0.8rem;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+  }
+
+  .fieldNrBuffer {
+    background-color: none;
+    height: 5%;
+  }
+
+  .whiteBg {
+    background-color: white !important;
+  }
+
+  .fieldNr {
+    background-color: none;
+    padding: 0;
+    margin: 0;
+    height: 25%;
+    width: 100%;
+    bottom: 0;
+    float: left;
+  }
+
+.die.one:after {
+  box-shadow: 0 .2em 0 #FFF 
+}
+
+.die.two:after { 
+  background: transparent;
+  box-shadow: -2.3em -2.3em 0 #345, 
+         2.3em  2.3em 0 #345, 
+        -2.3em -2.3em 0 #FFF, 
+         2.3em  2.4em 0 #FFF 
+}
+
+.die.three:after { 
+  box-shadow: -2.3em -2.3em 0 #345, 
+         2.3em  2.3em 0 #345, 
+        -2.3em -2.3em 0 #FFF, 
+         2.3em  2.4em 0 #FFF, 
+             0   .2em 0 #FFF 
+}
+
+.die.four:after { 
+  background: transparent;
+        box-shadow: -2.3em -2.3em 0 #345, 
+               2.3em  2.3em 0 #345, 
+              -2.3em  2.3em 0 #345, 
+               2.3em -2.3em 0 #345, 
+              -2.3em -2.3em 0 #FFF, 
+               2.3em  2.4em 0 #FFF, 
+              -2.3em  2.4em 0 #FFF, 
+               2.3em -2.3em 0 #FFF 
+}
+
+.die.five:after { 
+  box-shadow: -2.3em -2.3em 0 #345, 
+         2.3em  2.3em 0 #345, 
+        -2.3em  2.3em 0 #345, 
+         2.3em -2.3em 0 #345, 
+        -2.3em -2.2em 0 #FFF, 
+         2.3em -2.2em 0 #FFF, 
+         2.3em  2.4em 0 #FFF, 
+        -2.3em  2.4em 0 #FFF,
+             0   .2em 0 #FFF 
+}
+
+.die.six:after {
+  background: transparent;
+  box-shadow: -2.3em -2.3em 0 #345,
+        -2.3em      0 0 #345,
+        -2.3em  2.3em 0 #345,
+         2.3em -2.3em 0 #345,
+         2.3em      0 0 #345,
+         2.3em  2.3em 0 #345,
+        -2.3em -2.1em 0 #FFF,
+        -2.3em   .2em 0 #FFF,
+        -2.3em  2.4em 0 #FFF,
+         2.3em  2.4em 0 #FFF,
+         2.3em   .2em 0 #FFF,
+         2.3em -2.1em 0 #FFF
+}
+
+.die {
+  border-top: 1px solid #f1f1f1;
+  width: 50px; height: 50px;
+  border-radius: 10px;
+  position: relative;
+  margin: 10px;
+  font-size: 6px;
+  display: inline-block;
+  box-shadow: 0px 5px 0 #CCC, 0 6px 3px #444, 0 10px 5px #999;
+  background-image: linear-gradient(top, #fefefe, #f1f1f1 80%);
+}
+
+.die:after {
+        content: "";
+  width: 20%; 
+  height: 20%; 
+  left: 50%; 
+  top: 50%;
+  margin: -10%;
+  background: #345;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+}
+
+/* left control panel divs */
+
+#controlLeft {
+  background-color: none;
+  height: 97%;
+  width: 50%;
+  float: left;
+}
+
+#DBIV-logo {
+ height:14%;
+ padding-left:30%;
+ background-color:#FFF;
+}
+
+#minus-logo {
+  height: 100% - 82px;
+}
+
+#playerProfile {
+  background-color: none;
+  width: 100%;
+  height: 25%;
+}
+
+#characterPic {
+  background-color: green;
+  float: left;
+}
+
+#playerInfo {
+  text-align: left;
+  background-color: none;
+  height: 100%;
+}
+
+#serverlog {
+  background-color: none;
+  height: 20%;
+  width: 100%;
+}
+
+#console {
+  width: 90%;
+  height: 80%;
+  text-align: left;
+  margin-left: 5%;
+  background-color: #ccc;
+  overflow: auto;
+}
+
+#facts {
+  height: 15%;
+  margin-bottom:0%;
+}
+
+/* right control panel divs */
+
+#controlRight {
+  background-color: none;
+  height: 97%;
+  width: 50%;
+  margin-left: 50%;
+}
+
+#fieldInfo {
+  height: 40%;
+}
+
+#fieldInfo th {
+  cursor: default;
+  height: 2rem;
+}
+
+#fieldInfo td {
+  cursor: default;
+  height: 1.5rem;
+}
+
+
+#chatroom {
+}
+
+#chat {
+  width: 90%;
+  height:20%;
+  text-align: left;
+  margin-left: 5%;
+  background-color: #ccc;
+  overflow: auto;
+ }
+  
+#chatinput {
+	margin-left:5%;
+  width:90%;
+}
+
+#dices {
+}
+
+#impressum {
+  height: 3%;
+  background-color: none;
+  float: left;
+  width: 100%;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.center {
+  text-align: center;
+  font-weight: bold;
+}
+
+.left {
+  text-align: left;
+}
+
+span {
+  font-weight: bold;
+}
+
+.figure1 {
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: yellow;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid gray;
+  float: left;
+}
+
+.figure2 {
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: green;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid gray;
+  float: left;
+}
+
+.figure3 {
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: blue;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid gray;
+  float: left;
+}
+
+.figure4 {
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: red;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid gray;
+  float: left;
+}
+
+.figure5 {
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: white;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid gray;
+  float: left;
+}
+
+.figure6 {
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-color: black;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid gray;
+  float: left;
+}
+
+.panel {
+	background-color:#EEE;
+	margin-bottom:0.5%;
+}
+
+#fieldinfowrap {
+	height:25%;
+}
+
+.debugBorder {
+  border: 1px solid black;
+}
+
+/*Spielfeld*/
+.square {
+	width:18.75%;
+	height:18.755%;
+}
+.wide {
+	width:18.75%;
+	height:6.25%;
+}
+.high {
+	width:6.25%;
+	height:18.75%;
+}
+
+#field1 {
+	background-image:url('SPIELBRETT_FÜR_WEB-01.svg');
+	background-repeat:no-repeat;
+}
+#field2 {
+	background-image:url('SPIELBRETT_FÜR_WEB-02.svg');
+	background-repeat:no-repeat;
+}
+#field3 {
+	background-image:url('SPIELBRETT_FÜR_WEB-03.svg');
+	background-repeat:no-repeat;
+}
+#field4 {
+	background-image:url('SPIELBRETT_FÜR_WEB-04.svg');
+	background-repeat:no-repeat;
+}
+#field5 {
+	background-image:url('SPIELBRETT_FÜR_WEB-05.svg');
+	background-repeat:no-repeat;
+}
+#field6 {
+	background-image:url('SPIELBRETT_FÜR_WEB-06.svg');
+	background-repeat:no-repeat;
+}
+#field7 {
+	background-image:url('SPIELBRETT_FÜR_WEB-07.svg');
+	background-repeat:no-repeat;
+}
+#field8 {
+	background-image:url('SPIELBRETT_FÜR_WEB-08.svg');
+	background-repeat:no-repeat;
+}
+#field9 {
+	background-image:url('SPIELBRETT_FÜR_WEB-09.svg');
+	background-repeat:no-repeat;
+}
+#field10 {
+	background-image:url('SPIELBRETT_FÜR_WEB-10.svg');
+	background-repeat:no-repeat;
+}
+#field11 {
+	background-image:url('SPIELBRETT_FÜR_WEB-11.svg');
+	background-repeat:no-repeat;
+}
+#field12 {
+	background-image:url('SPIELBRETT_FÜR_WEB-12.svg');
+	background-repeat:no-repeat;
+}
+#field13 {
+	background-image:url('SPIELBRETT_FÜR_WEB-13.svg');
+	background-repeat:no-repeat;
+}
+#field14 {
+	background-image:url('SPIELBRETT_FÜR_WEB-14.svg');
+	background-repeat:no-repeat;
+}
+#field15 {
+	background-image:url('SPIELBRETT_FÜR_WEB-15.svg');
+	background-repeat:no-repeat;
+}
+#field16 {
+	background-image:url('SPIELBRETT_FÜR_WEB-16.svg');
+	background-repeat:no-repeat;
+}
+#field17 {
+	background-image:url('SPIELBRETT_FÜR_WEB-17.svg');
+	background-repeat:no-repeat;
+}
+#field18 {
+	background-image:url('SPIELBRETT_FÜR_WEB-18.svg');
+	background-repeat:no-repeat;
+}
+#field19 {
+	background-image:url('SPIELBRETT_FÜR_WEB-19.svg');
+	background-repeat:no-repeat;
+}
+#field20 {
+	background-image:url('SPIELBRETT_FÜR_WEB-20.svg');
+	background-repeat:no-repeat;
+}
+#field21 {
+	background-image:url('SPIELBRETT_FÜR_WEB-21.svg');
+	background-repeat:no-repeat;
+}
+#field22 {
+	background-image:url('SPIELBRETT_FÜR_WEB-22.svg');
+	background-repeat:no-repeat;
+}
+#field23 {
+	background-image:url('SPIELBRETT_FÜR_WEB-23.svg');
+	background-repeat:no-repeat;
+}
+#field24 {
+	background-image:url('SPIELBRETT_FÜR_WEB-24.svg');
+	background-repeat:no-repeat;
+}
+#field25 {
+	background-image:url('SPIELBRETT_FÜR_WEB-25.svg');
+	background-repeat:no-repeat;
+}
+#field26 {
+	background-image:url('SPIELBRETT_FÜR_WEB-26.svg');
+	background-repeat:no-repeat;
+}
+#field27 {
+	background-image:url('SPIELBRETT_FÜR_WEB-27.svg');
+	background-repeat:no-repeat;
+}
+#field28 {
+	background-image:url('SPIELBRETT_FÜR_WEB-28.svg');
+	background-repeat:no-repeat;
+}
+#field29 {
+	background-image:url('SPIELBRETT_FÜR_WEB-29.svg');
+	background-repeat:no-repeat;
+}
+#field30 {
+	background-image:url('SPIELBRETT_FÜR_WEB-30.svg');
+	background-repeat:no-repeat;
+}
+#field31 {
+	background-image:url('SPIELBRETT_FÜR_WEB-31.svg');
+	background-repeat:no-repeat;
+}
+#field32 {
+	background-image:url('SPIELBRETT_FÜR_WEB-32.svg');
+	background-repeat:no-repeat;
+}
+#field33 {
+	background-image:url('SPIELBRETT_FÜR_WEB-33.svg');
+	background-repeat:no-repeat;
+}
+#field34 {
+	background-image:url('SPIELBRETT_FÜR_WEB-34.svg');
+	background-repeat:no-repeat;
+}
+#field35 {
+	background-image:url('SPIELBRETT_FÜR_WEB-35.svg');
+	background-repeat:no-repeat;
+}
+#field36 {
+	background-image:url('SPIELBRETT_FÜR_WEB-36.svg');
+	background-repeat:no-repeat;
+}
+#field37 {
+	background-image:url('SPIELBRETT_FÜR_WEB-37.svg');
+	background-repeat:no-repeat;
+}
+#field38 {
+	background-image:url('SPIELBRETT_FÜR_WEB-38.svg');
+	background-repeat:no-repeat;
+}
+#field39 {
+	background-image:url('SPIELBRETT_FÜR_WEB-39.svg');
+	background-repeat:no-repeat;
+}
+#field40 {
+	background-image:url('SPIELBRETT_FÜR_WEB-40.svg');
+	background-repeat:no-repeat;
+}
+
+#infopanel {
+	height:40%;
+	padding:2%;
+	background-color:#63C1FF;
+}
+
+#infopanel2 {
+	height:94%;
+	padding:2%;
+	background-color:#01234A;
+}
+
+#infopanel3 {
+	height:94%;
+	padding:2%;
+	background-color:#FFF;
+}
+
+#dicespanel {
+	height:16%;
+	background-color:#FFF;
+}
+
+#chatpanel {
+	height:40%;
+	padding:2%;
+	background-color:#63C1FF;
+}
+#chatpanel2 {
+	padding:2%;
+	background-color:#01234A;
+}
+
+#chatpanel3 {
+	height:72%;
+	background-color:#FFF;
+	margin-bottom:2%;
+}
+#chatpanel4 {
+	height:20%;
+	background-color:#FFF;
+}

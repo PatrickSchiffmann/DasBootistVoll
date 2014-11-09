@@ -1,0 +1,291 @@
+﻿<html>
+  <head>
+    <title>Das Boot ist voll</title>
+  <LINK href="style.css" rel="stylesheet" type="text/css">
+
+	<script src="jquery-latest.min.js"></script>
+  <script src="jquery-1.10.2.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  
+  <script src="client.js"></script>
+  
+  
+  </head>
+  
+  <body>
+    <div id="boardwrap">
+      <table>
+        <tr>
+			<td class="START square" id="field1">
+			&nbsp;            
+			</td>
+			<td class="IMMOred high" onMouseOver="getFieldInfo(2)" onMouseOut="fieldInfoOut()"id="field2">
+            
+			</td>     
+			<td class="RISK high"id="field3">
+            
+			</td>   
+			<td class="JOB high"id="field4" id="field4">
+			
+			</td>
+			<td class="IMMOold high" onMouseOver="getFieldInfo(5)" onMouseOut="fieldInfoOut()" id="field5">
+            
+			</td>
+			<td class="IMMOold high" onMouseOver="getFieldInfo(6)" onMouseOut="fieldInfoOut()" id="field6">
+          
+			</td>
+			<td class="IMMOold high" onMouseOver="getFieldInfo(7)" onMouseOut="fieldInfoOut()" id="field7">
+			
+			</td>
+			<td class="RISK high" id="field8">
+            
+			</td> 
+			<td class="JOB high" id="field9">
+            
+			</td>
+			<td class="IMMOcity high" onMouseOver="getFieldInfo(10)" onMouseOut="fieldInfoOut()" id="field10">
+            
+			</td>
+			<td class="FELONY square" id="field11">
+            
+			</td>
+        </tr>
+        
+        <tr>
+          <td class="IMMOred wide" onMouseOver="getFieldInfo(40)" onMouseOut="fieldInfoOut()" id="field40">
+          
+		  </td>
+          <td class="noPointer" rowspan="9" colspan="9">
+
+            <div id="info">
+
+              <div id="chooseRoom">
+                <span class="headline">Spielraum auswählen:</span>
+                <div id="leftRooms">
+                  <script>
+                    document.write('<ul class="roomList">');
+                    for(var i = 0; i < 8; i++)
+                    {
+                      var j = i+1;
+                      document.write('<li onclick="joinRoom(' + i + ')">Raum ' + j + '</li>');
+                    }                    
+                    document.write('</ul>');
+                  </script>
+                </div>
+                <div id="rightRooms">
+                  <script>
+                    document.write('<ul class="roomList">');
+                    for(var i = 8; i < 16; i++)
+                    {
+                      var j = i+1;
+                      document.write('<li onclick="joinRoom(' + i + ')">Raum ' + j + '</li>');
+                    }                    
+                    document.write('</ul>');
+                  </script>
+                </div>
+              </div>
+
+              <div id="chooseCharacter" style="display: none;">
+                <span class="headline">Charakter auswählen:</span>
+                <div id="chooseCharacterLeft"></div>
+                <div id="chooseCharacterRight"></div>
+              </div>
+
+              <div id="dices" class="hidden">
+                  <div id="dice1" class="die"></div>
+                  <div id="dice2" class="die"></div>
+                  <div id="rollDices">
+                    <input type="button" value="Würfeln" onClick="throwDices()"></input>
+                    <input type="button" value="Spiel verlassen" onClick="leaveGame()"></input>
+                  </div>
+                </div>
+			  
+			  <div id="controlwrap" class="hidden" style="background-color:#F00;">
+        		<div id="fieldinfowrap" class="hidden" style="border:1px solid black;">
+                  <p class="center">Feldinfo:</p>
+                  <div id="fieldInfo" style="border:1px solid black;">
+                    <table border="1" style="background-color:#FFF">
+                    <tr>
+                      <th colspan="3" ><span id="fieldName">Bahnhofstraße</span></th>
+                    </tr>
+                    <tr>                        
+                      <td>Miete: <span style="background-color: pink;" id="fieldRent">20</span>€</td>
+                      <td>Miete 1 Haus: <span id="field1House">100</span>€</td>
+                      <td>Miete 2 Haus: <span id="field2House">300</span>€</td>
+                    </tr>
+                    <tr>
+                      <td>Miete 3 Haus: <span id="field3House">600</span>€</td>
+                      <td>Miete 4 Haus: <span id="field4House">750</span>€</td>
+                      <td>Miete Hotel: <span id="fieldHotel">950</span>€</td>
+                    </tr>
+                    <tr>
+                      <td>Kaufpreis: <span id="fieldPrice">220</span>€</td>
+                      <td>Preis Haus: <span id="fieldHousePrice">160</span>€</td>
+                      <td>Preis Hotel: <span id="fieldHotelPrice">160</span>€</td>
+                    </tr>
+                    </table>
+                  </div>
+				</div>
+             
+              </div>            
+
+            </div>
+          </td>
+          <td class="IMMOcity wide" onMouseOver="getFieldInfo(12)" onMouseOut="fieldInfoOut()" id="field12">
+          
+		  </td>
+        </tr>
+        
+        <tr>
+          <td class="IMMOred wide" onMouseOver="getFieldInfo(39)" onMouseOut="fieldInfoOut()" id="field39">
+          
+		  </td>
+          <td class="RISK wide" id="field13">
+          
+		  </td>
+        </tr>
+        
+        <tr>
+          <td class="RISK wide" id="field38">
+          
+		  </td>
+          <td class="JOB wide" id="field14">
+          
+		  </td>
+        </tr>
+        <tr>
+          <td class="IMMOrich wide" onMouseOver="getFieldInfo(37)" onMouseOut="fieldInfoOut()" id="field37">
+          
+		  </td>
+          <td class="IMMObank wide" onMouseOver="getFieldInfo(15)" onMouseOut="fieldInfoOut()" id="field15">
+          
+		  </td>
+        </tr>
+        <tr>
+          <td class="IMMOrich wide" onMouseOver="getFieldInfo(36)" onMouseOut="fieldInfoOut()" id="field36">
+          </td>
+          <td class="IMMObank wide" onMouseOver="getFieldInfo(16)" onMouseOut="fieldInfoOut()" id="field16">
+          
+		  </td>
+        </tr>
+        <tr>
+          <td class="IMMOrich wide" onMouseOver="getFieldInfo(35)" onMouseOut="fieldInfoOut()" id="field35">
+        
+		  </td>
+          <td class="IMMObank wide" onMouseOver="getFieldInfo(17)" onMouseOut="fieldInfoOut()" id="field17">
+				&nbsp;
+          </td>
+        </tr>
+        <tr>
+          <td class="RISK wide" id="field33">
+          
+		  </td>
+          <td class="RISK wide" id="field18">
+          
+		  </td>
+        </tr>
+        <tr>
+          <td class="JOB wide" id="field33">
+          
+		  </td>
+          <td class="JOB wide" id="field19">
+          
+		  </td>
+        </tr>
+        <tr>
+          <td class="IMMOind wide" onMouseOver="getFieldInfo(32)" onMouseOut="fieldInfoOut()" id="field32">
+          
+		  </td>
+          <td class="IMMOhot wide" onMouseOver="getFieldInfo(20)" onMouseOut="fieldInfoOut()" id="field20">
+          
+		  </td>
+        </tr>
+        
+        <tr>
+          <td class="JAIL square" id="field31">
+          
+		  </td>
+          <td class="IMMOind high" onMouseOver="getFieldInfo(30)" onMouseOut="fieldInfoOut()" id="field30">
+          
+		  </td>        
+          <td class="RISK high" id="field29">
+          
+		  </td>
+          <td class="JOB high" id="field28">
+          
+		  </td>
+          <td class="IMMOind high" onMouseOver="getFieldInfo(27)" onMouseOut="fieldInfoOut()" id="field27">
+          
+		  </td>
+          <td class="IMMOuni high" onMouseOver="getFieldInfo(26)" onMouseOut="fieldInfoOut()" id="field26">
+          
+		  </td>
+          <td class="IMMOuni high" onMouseOver="getFieldInfo(25)" onMouseOut="fieldInfoOut()" id="field25">
+          
+		  </td>
+          <td class="RISK high" id="field24">
+          
+		  </td>
+          <td class="JOB high" id="field23">
+          
+		  </td>
+          <td class="IMMOhot high" onMouseOver="getFieldInfo(22)" onMouseOut="fieldInfoOut()" id="field22">
+          
+		  </td>
+          <td class="TRAINING square" id="field21">
+          
+		  </td>
+        </tr>
+        
+      </table>
+      
+    </div>
+	
+	<div id="panelwrapper">
+		<div id="infopanel">
+			<div id="infopanel2">
+				<div id="infopanel3">
+				</div>
+			</div>
+		</div>
+		
+		<div id="dicespanel">
+			<div id="dice 1"> </div>
+			<div id="dice 2"> </div>
+		</div>
+		
+		<div id="chatpanel">
+			<div id="chatpanel2">
+				<div id="chatpanel3"> </div>
+				<div id="chatpanel4"> </div>
+			</div>
+		</div>
+	
+		<!--
+
+		<div id="playerProfile" class="panel">
+			<div id="characterPic">
+				<img src="./media/new-hans.png" height="164px"/>
+			</div>
+			
+			<div id="playerInfo" class="panel">
+				<p class="center"><span id="playernumber"></span> Spieler im Raum #<span id="room"></span></p>
+				<p class="center"><span id="name">Name</span></p>
+				<p>&nbsp;&nbsp;Charakter: <span id="characterName"></span></p>
+				<p>&nbsp;&nbsp;Statuspunkte: <span id="statuspkts"></span></p>
+				<p>&nbsp;&nbsp;Einkommen: <span id="income"></span> €</p>
+				<p>&nbsp;&nbsp;Geldbörse: <span id="moneysack"></span> €</p>
+			</div>
+		</div>
+		
+		<div id="chatroom" class="panel">
+            <p class="center">Chat:</span></p>
+            <div id="chat">
+			</div>
+			<input type="text" id="chatinput" placeholder="Tippen zum Chatten. Absenden mit Enter." />
+        </div>
+
+    </div>
+
+  </body>
+</html>

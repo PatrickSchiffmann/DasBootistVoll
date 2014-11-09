@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 46.2 157" enable-background="new 0 0 46.2 157" xml:space="preserve">
+<font horiz-adv-x="1000">
+<!-- Copyright (c) 2012 by Just Another Foundry. All rights reserved. -->
+<!-- Copyright: Copyright 2014 Adobe System Incorporated. All rights reserved. -->
+<font-face font-family="BerninoSans-CondensedExtrabold" units-per-em="1000" underline-position="-93" underline-thickness="87"/>
+<missing-glyph horiz-adv-x="190"/>
+<glyph unicode="I" horiz-adv-x="297" d="M61,752l0,-752l175,0l0,752z"/>
+<glyph unicode="K" horiz-adv-x="589" d="M61,752l0,-752l171,0l0,235l46,63l111,-298l190,0l-184,460l179,292l-169,0l-173,-293l0,293z"/>
+<glyph unicode="O" horiz-adv-x="647" d="M608,383C608,507 593,604 542,671C495,733 419,764 325,764C231,764 156,733 108,672C58,608 39,515 39,375C39,250 54,148 105,81C152,19 227,-12 321,-12C414,-12 492,19 539,80C589,144 608,243 608,383M323,126C286,126 263,143 248,171C230,206 224,257 224,376C224,495 230,546 248,581C263,609 286,626 323,626C361,626 384,609 399,581C417,546 423,495 423,376C423,257 417,206 399,171C384,143 361,126 323,126z"/>
+<glyph unicode="R" horiz-adv-x="589" d="M287,274l95,-274l188,0l-127,310C506,346 545,414 545,522C545,616 515,676 466,711C408,752 334,752 284,752l-223,0l0,-752l167,0l0,274M228,614l61,0C302,614 327,614 345,600C363,585 372,555 372,515C372,472 361,440 344,426C327,413 301,413 287,413l-59,0z"/>
+<glyph unicode="S" horiz-adv-x="481" d="M421,739C421,739 356,758 278,758C122,758 37,681 37,543C37,438 87,388 139,346C201,296 269,260 269,195C269,151 239,128 186,128C129,128 51,155 51,155l-7,0l0,-139C44,16 108,-6 195,-6C359,-6 450,71 450,219C450,334 395,388 331,436C273,480 218,508 218,565C218,603 241,624 291,624C344,624 414,601 414,601l7,0z"/>
+</font>
+
+	<g id="Layer_1">
+	<defs>
+		<filter id="Adobe_OpacityMaskFilter" filterUnits="userSpaceOnUse" x="-475.6" y="-618.6" width="785.5" height="786.4">
+			<feColorMatrix  type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"/>
+		</filter>
+	</defs>
+	<mask maskUnits="userSpaceOnUse" x="-475.6" y="-618.6" width="785.5" height="786.4" id="SVGID_1_">
+	</mask>
+	<g mask="url(#SVGID_1_)">
+		<rect x="-474.6" y="-618.6" fill="#D4E5EC" width="784.4" height="786.4"/>
+		<path fill="#103E60" stroke="#0B2D40" stroke-width="6.577367e-002" stroke-miterlimit="10" d="M303.9-172.1
+			C295-173.4,213-96,49-96c-125.5,0-305.3-119.5-392.2-119.5s-131.4,21.8-131.4,21.8l-1,361.5h784.4L303.9-172.1z"/>
+		<path fill="#66A4D9" d="M-475.6-217.1c8.9-1.7,101.8,88,265.8,88c125.5,0,305.3-63.7,392.2-63.7s126.5,41.7,126.5,41.7l1,318.9
+			h-784.4L-475.6-217.1z"/>
+		<path fill="#8DC0E3" d="M309.8-108.8c-8.9-1.2-101.8,63.2-265.8,63.2c-125.5,0-309.2-88-396.2-88s-122.5,72.2-122.5,72.2l-1,229.2
+			h784.4L309.8-108.8z"/>
+		<path fill="#C2DEF0" d="M-475.6-10c8.9-1,101.8,43.5,265.8,43.5c125.5,0,309.2-183.8,396.2-183.8S308.8-92,308.8-92l1,259.8
+			h-784.4L-475.6-10z"/>
+	</g>
+	<g>
+		<g>
+			
+				<text transform="matrix(0 -1 1 0 35.7486 125.8821)" fill="#E5332A" font-family="'BerninoSans-CondensedExtrabold'" font-size="33.7124">RISIKO</text>
+		</g>
+		<g>
+			<path fill="#103E60" stroke="#0B2D40" stroke-width="4.212371e-002" stroke-miterlimit="10" d="M7.9,132l22.6-2
+				c0,0-0.8,1.5-0.5,3.4c0.3,1.8,1.6,3,1.6,3l-21.9,5.9c0,0-2-1.5-2.6-4.9C6.6,134.2,7.9,132,7.9,132z M34.8,128.9
+				c1.9-0.3,3.8,1,4.1,2.9c0.3,1.9-1,3.8-2.9,4.1s-3.8-1-4.1-2.9C31.6,131.1,32.9,129.3,34.8,128.9z"/>
+		</g>
+		<g>
+			<path fill="#103E60" stroke="#0B2D40" stroke-width="3.132028e-002" stroke-miterlimit="10" d="M15.5,144.5l16.1-4.9
+				c0,0-0.3,1.2,0.2,2.5c0.5,1.3,1.6,1.9,1.6,1.9l-15,7.7c0,0-1.7-0.8-2.6-3.1S15.5,144.5,15.5,144.5z M34.5,138.1
+				c1.4-0.6,2.9,0.1,3.5,1.5c0.6,1.4-0.1,2.9-1.5,3.5s-2.9-0.1-3.5-1.5C32.5,140.2,33.2,138.7,34.5,138.1z"/>
+		</g>
+		<g>
+			<path fill="#103E60" stroke="#0B2D40" stroke-width="4.212371e-002" stroke-miterlimit="10" d="M7.2,18.1
+				c0.6-3.3,2.6-4.9,2.6-4.9l21.9,5.9c0,0-1.3,1.2-1.6,3c-0.3,1.8,0.5,3.4,0.5,3.4l-22.6-2C7.9,23.5,6.6,21.4,7.2,18.1z M31.9,22.5
+				c0.3-1.9,2.2-3.2,4.1-2.9c1.9,0.3,3.2,2.2,2.9,4.1s-2.2,3.2-4.1,2.9S31.6,24.4,31.9,22.5z"/>
+		</g>
+		<g>
+			<path fill="#103E60" stroke="#0B2D40" stroke-width="3.132028e-002" stroke-miterlimit="10" d="M15.8,6.9
+				c0.9-2.3,2.6-3.1,2.6-3.1l15,7.7c0,0-1.1,0.7-1.6,1.9c-0.5,1.3-0.2,2.5-0.2,2.5L15.5,11C15.5,11,14.8,9.3,15.8,6.9z M33.1,14
+				c0.6-1.4,2.1-2,3.5-1.5c1.4,0.6,2,2.1,1.5,3.5c-0.6,1.4-2.1,2-3.5,1.5C33.2,16.9,32.5,15.3,33.1,14z"/>
+		</g>
+	</g>
+	<g>
+		
+			<image overflow="visible" opacity="0.5" width="54" height="141" xlink:href="data:image/png;base64,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" transform="matrix(1 0 0 1 44.7775 10.8191)">
+		</image>
+	</g>
+</g>
+<g id="Layer_2">
+</g>
+</svg>

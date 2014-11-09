@@ -1,0 +1,88 @@
+{
+"actioncards": [
+{ "title":"Jahresausgleich" , "desc":"Sie machen den Jahresausgleich und bekommen 500 €." },
+{ "title":"Tante" , "desc":"Eine Tante schenkt Ihnen 250 €." },
+{ "title":"Geldkoffer" , "desc":"Sie finden einen Geldkoffer und bekommen 350 € Finderlohn" },
+{ "title":"Wirtschaftslage" , "desc":"Ihr Betrieb zahlt aufgrund der guten Wirtschaftslage einen Bonus von 600 €." },
+{ "title":"Heizkosten" , "desc":"Sie bekommen einen Heizkostenzuschuss in der Höhe von 1.000 €." },
+{ "title":"Kredite" , "desc":"Ihre Kredite werden fällig gestellt. Sie müssen 1.000 € an die Bank geben." },
+{ "title":"Anwaltskosten" , "desc":"Es fallen Anwaltskosten in der Höhe von 750 € an." },
+{ "title":"Brand" , "desc":"Ein Brand verwüstet Ihre Wohnung. Sie müssen 1.500 € für Reparaturen zahlen." },
+{ "title":"Unfall#1" , "desc":"Sie verursachen einen Autounfall und müssen 750 € an Reparaturkosten bezahlen." },
+{ "title":"Diebstahl" , "desc":"IHNEN WERDEN 250 € GESTOHLEN." },
+{ "title":"Unfall#2" , "desc":"SIE HABEN EINEN UNFALL VERURSACHT UND MÜSSEN 500 € REPARATUR KOSTEN ZAHLEN." },
+
+{ "title":"EDV" , "desc":"Ihr Betrieb übernimmt die Kosten für einen EDV-Kurs." },
+{ "title":"Matura" , "desc":"Ihr Betrieb übernimmt die Kosten für Ihre Matura." },
+{ "title":"Führerschein" , "desc":"Ihr Betrieb bezahlt Ihnen den Führerschein." },
+{ "title":"Sprachkurs" , "desc":"Ihr Betrieb übernimmt die Kosten für einen Sprachkurs." },
+{ "title":"EDV Wertlos" , "desc":"Ihre EDV-Kenntnisse werden aufgrund der raschen Entwicklung im IT-Bereich wertlos." },
+{ "title":"Betriebsausbildung" , "desc":"Wenn Sie unter 35 Jahre alt sind, bekommen Sie eine EDV-Ausbildung von Ihrem Betrieb geschenkt." },
+
+{ "title":"Gefängnis Freikarte" , "desc":"Mit dieser Karte kommen Sie aus dem Gefängnis frei und erhalten trotzdem Ihr Gehalt " },
+{ "title":"Gutschein für Autoreparatur" , "desc":"ALS TREUE/R KUNDE/KUNDIN BEKOMMEN SIE DIE NÄCHSTE AUTOREPARATUR GRATIS." },
+{ "title":"NGO - Anwalt" , "desc":"Eine NGO übernimmt Ihre Anwaltskosten. " },
+{ "title":"Gewinn: Neues Auto" , "desc":"SIE HABEN AN EINEM GEWINNSPIEL TEILGENOMMEN UND EIN NAGELNEUES AUTO GEWONNEN." },
+
+{ "title":"Beförderung" , "desc":"Als Mann kommen Sie in die nächste Gehaltsstufe. Als Frau kündigen Sie, da Sie sich bei einer Beförderung übergangen fühlen und fallen auf Ihre ursprüngliche Gehaltstufe zurück." },
+{ "title":"Sex. Belästigung" , "desc":"Sie werden in Ihrem Betrieb sexuell belästigt. Sie kündigen, da Sie unter diesen Bedingungen nicht arbeiten können und fallen auf Ihre ursprüngliche Gehaltstufe zurück. " },
+{ "title":"Mobbing" , "desc":"Falls Sie einer Minderheit angehören, werden Sie aus dem Betrieb gemobbt und fallen damit auf Ihre ursprüngliche Gehaltstufe zurück." },
+{ "title":"Vorgeschobene Kündigung" , "desc":"Falls Sie einer Minderheit angehören, werden Sie aufgrund fadenscheiniger Gründe vom Betrieb gekündigt und fallen damit auf Ihre ursprüngliche Gehaltstufe zurück" },
+{ "title":"Rationalisierung" , "desc":"Wenn Sie über 50 Jahre alt sind, werden Sie aufgrund von Rationalisierungsmaßnahmen entlassen und fallen damit auf Ihre ursprüngliche Gehaltstufe zurück." },
+
+{ "title":"Einbürgerung" , "desc":"Sie erhalten die österreichische Staatsbürgerschaft. Sie haben nun dieselben Verdienstmöglichkeiten wie ein/e EU-BürgerIn." },
+{ "title":"Nostrifizierung" , "desc":"Ihr Abschluss wird von der EU anerkannt." },
+{ "title":"Aufenthaltsgenehmigung" , "desc":"To-Do: Kein Text im Wordfile!" },
+
+{ "title":"Schwangerschaft" , "desc":"Als Mann zahlen Sie die nächsten 5 Runde 350 € an die Bank für Alimente. Als Frau verdienen Sie die nächsten 5 Runden nur 50% ihres regulären Gehalts, da Sie Teilzeit arbeiten müssen." },
+{ "title":"Krankheit" , "desc":"Als EU-BürgerIn zahlt die Sozialversicherung Ihren Lohn. Falls Sie Nicht-EU-BürgerIn sind, bekommen Sie in diesem Monat nur 50% Ihres Gehaltes." },
+
+{ "title":"Gefängnis" , "desc":"SIE MÜSSEN INS GEFÄNGNIS. SIE MÜSSEN ZWEI RUNDEN AUSSETZEN UND ERHALTEN IN DIESEN RUNDEN KEIN GEHALT." },
+{ "title":"Ausbildungsfeld" , "desc":"ZIEHEN SIE AUF DAS AUSBILDUNGSFELD" },
+
+{ "title":"Gerichtsverhandlung" , "desc":"Sie ziehen vor Gericht. Es fallen 1.000 € Anwaltskosten an. Falls Sie das Geld nicht haben, wird Ihnen ein/e PflichtverteidigerIn gestellt. Dies bedeutet 2 Runden Gefängnis." },
+{ "title":"Steuerfahndung" , "desc":"Zeigen Sie eine/n MitspielerIn bei der Steuerfandung an! Die/der Angezeigte verliert 10% ihres/seines Geldes, Sie bekommen eine Belohnung von 2500 € " }
+],
+
+"jobcards":[
+{ "desc":"Alter: 0-60, Vorraussetzung: keine, Bonus: keiner" },
+{ "desc":"Alter: jedes, Vorraussetzung: keine, Bonus:keiner" },
+{ "desc":"Alter: 0-30, Vorraussetzung: keine, Bonus: +20€" },
+
+{ "desc":"Alter: 0-30, Vorraussetzung: Matura, Bonus: +50€" },
+{ "desc":"Alter: 0-60, Vorraussetzung: keine, Bonus: +50€" },
+{ "desc":"Alter: über 60, Vorraussetzung: AkademikerIn, EDV oder MR-TrainerIn oder Fremdsprache, Bonus: +100€" },
+
+{ "desc":"Alter: 0-60, Vorraussetzung: EDV oder MR-TrainerIn oder Fremdsprache, Bonus +100€" },
+{ "desc":"Alter: 0-60, Vorraussetzung: Matura, Bonus +100€" },
+{ "desc":"Alter: 30-60, Vorraussetzung: AkademikerIn, EDV oder MR-TrainerIn oder Fremdsprache, Bonus +100€" },
+
+{ "desc":"Alter: jedes, Vorraussetzung: AkademikerIn, EDV oder MR-TrainerIn oder Fremdsprache, Bonus +100€" },
+{ "desc":"Alter: über 60, Vorraussetzung: Führerschein, Bonus +200€" },
+{ "desc":"Alter: 0-30, Vorraussetzung: EDV, Bonus +200€" },
+
+{ "desc":"Alter: 30-60, Vorraussetzung: Matura, EDV oderMR-TrainerIn oder Fremdsprache oder Führerschein, Bonus +200€" },
+{ "desc":"Alter: jedes, Vorraussetzung: Fremdsprache, Bonus +200€" },
+{ "desc":"Alter: über 60, Vorraussetzung: Matura, EDV oder Fremdsprache, Bonus +250€" },
+
+{ "desc":"Alter: 0-60, Vorraussetzung: EDV und Fremdsprache, Bonus +250€" },
+{ "desc":"Alter: 0-30, Vorraussetzung: Matura, EDV und Fremdsprache oder neues Auto, Bonus +500€" },
+{ "desc":"Alter: 0-30, Vorraussetzung: AkademikerIn, EDV und Fremdsprache, Bonus +500€" },
+
+{ "desc":"Alter: 0-60, Vorraussetzung: EDV und Fremdsprache oder neues Auto, Bonus +500€" },
+{ "desc":"Alter: 0-60, Vorraussetzung: Matura, EDV und Fremdsprache oder Führerschein und neues Auto, Bonus +500€" },
+{ "desc":"Alter: jedes, Vorraussetzung: Auto, Bonus +500€" },
+
+{ "desc":"Alter: jedes, Vorraussetzung: EDV und Fremdsprache oder Führerschein und neues Auto, Bonus +500€" },
+{ "desc":"Alter: jedes, Vorraussetzung: Matura, EDV und Fremdsprache oder neues Auto, Bonus +500€" },
+{ "desc":"Alter: 30-60, Vorraussetzung: neues Auto, Bonus +750€" },
+
+{ "desc":"Alter: 30-60, Vorraussetzung: EDV, Fremdsprache und neues Auto, Bonus +1.000€" },
+{ "desc":"Alter: 30-60, Vorraussetzung: Matura, EDV und Fremdsprache und neues Auto, Bonus +1.000€" },
+{ "desc":"Alter: 30-60, Vorraussetzung: AkademikerIn, EDV, Fremdsprache und neues Auto, Bonus +1.000€" },
+
+{ "desc":"Alter: 0-60, Vorraussetzung: AkademikerIn, EDV, Fremdsprache, neues Auto, MR-TrainerIn, MBA, Bonus +12.000€" },
+{ "desc":"Alter: jedes, Vorraussetzung: Matura, Bonus +20€" },
+{ "desc":"Alter: jedes, Vorraussetzung: keine, Bonus +100€" }
+]
+}
