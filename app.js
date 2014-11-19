@@ -121,40 +121,40 @@ io.sockets.on('connection', function(socket) {
         myGame.printPlayers();
     });
 
-    socket.on('is ready', function(name, room) {
-		socket.ready = true;
-        var r = myGame.getRooms()[room];
-        var p = r.findPlayerByName(name);
-        p.setReady(true);
-        console.log('[' + room + '] : ' + name + ' is ready');
-        
-		//Pseudo Uids, ändern auf GUIDs!
-		socket.emit('unique id', r.getNrPlayers());
-		socket.uid = r.getNrPlayers();
-		
-        if (r.getNrPlayers() < 2) {
-            console.log('only one player - can\'t play alone');
-            return;
-        }
+  socket.on('is ready', function(name, room)
+  {
+    socket.ready = true;
+    var r = myGame.getRooms()[room];
+    var p = r.findPlayerByName(name);
+    p.setReady(true);
+    console.log('[' + room + '] : ' + name + ' is ready');
 
-        // check if everbody ready
-        for (var iter in r.getPlayers()) {
-            if (!r.getPlayers()[iter].isReady()) {
-                console.log('[' + room + '] : room not ready');
-                return;
-            }
-        }
+    //Pseudo Uids, ändern auf GUIDs!
+    socket.emit('unique id', p.getUniqueID());
+    socket.uid = p.getUniqueID();
 
-        console.log('[' + room + '] : everbody ready!');
-        io.sockets.in(socket.room).emit('start game', 'Alle Spieler bereit. Spiel beginnt.');
-		io.sockets.in(socket.room).emit('active player', r.getCurrentPlayerIndex());
-		console.log("Active Player: " + r.getCurrentPlayerIndex());
-		
-        
-		//io.sockets.in(socket.room).emit('start countdown');
-        //io.sockets.in(socket.room).emit('show dices');
+    if (r.getNrPlayers() < 2) {
+      console.log('only one player - can\'t play alone');
+      return;
+    }
+
+    // check if everbody ready
+    for (var iter in r.getPlayers()) {
+      if (!r.getPlayers()[iter].isReady()) {
+        console.log('[' + room + '] : room not ready');
         return;
-    });
+      }
+    }
+
+    console.log('[' + room + '] : everbody ready!');
+    io.sockets.in(socket.room).emit('start game', 'Alle Spieler bereit. Spiel beginnt.');
+    io.sockets.in(socket.room).emit('active player', r.getCurrentPlayer().getUniqueID());
+    console.log("Active Player: " + r.getCurrentPlayerIndex() + " with ID: " + r.getCurrentPlayer().getUniqueID());
+
+    //io.sockets.in(socket.room).emit('start countdown');
+    //io.sockets.in(socket.room).emit('show dices');
+    return;
+  });
 
     socket.on('leave game', function(playerName, roomID) {
         console.log('remove Player ' + playerName + ' from room ' + roomID);
@@ -220,104 +220,137 @@ io.sockets.on('connection', function(socket) {
             priceModel.getPriceHouse(), priceModel.getPriceHotel());
     });
 
-    socket.on('throw dices', function(name, roomID) {
-        var roll1 = myDice.roll();
-        var roll2 = myDice.roll();
-        var oldField = 0;
-        var newField = 0;
-        //console.log("dice1 : " + roll1 + "\tdice2: "+ roll2);
-        var currentBoard = myGame.getRooms()[roomID].getBoard();
-        for (var iter in myGame.getRooms()[roomID].getPlayers()) {
-            oldField = myGame.getRooms()[roomID].getPlayers()[iter].getField();
-            if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === name) {
-                myGame.getRooms()[roomID].getPlayers()[iter].makeMove(roll1 + roll2);
-                var currentField = myGame.getRooms()[roomID].getPlayers()[iter].getField();
-                console.log(name + " moves to field " + currentField + " [" + roll1 + "+" + roll2 + "]");
-                if (currentBoard[currentField - 1].getType() == RISK) {
-                    console.log("apply risk card");
-                    card_id = myGame.getRooms()[roomID].getRiskCards().draw();
-                    socket.emit('receive riskcard', card_id);
-                    myGame.getRooms()[roomID].getRiskCards().getCardById(card_id).apply(myGame.getRooms()[roomID].getPlayers()[iter]);
-                } else if (currentBoard[currentField - 1].getType() == JOB) {
-                    console.log("apply job card");
-                    card_id = myGame.getRooms()[roomID].getJobCards().draw();
-                    socket.emit('receive jobcard', card_id);
-                    myGame.getRooms()[roomID].getJobCards().getCardById(card_id).apply(myGame.getRooms()[roomID].getPlayers()[iter]);
-                } else if (currentBoard[currentField - 1].getType() == IMMO) {
-                    console.log("immo field");
-                    var player = myGame.getRooms()[roomID].getPlayers()[iter];
+  socket.on('throw dices', function(name, roomID)
+  {
+    var roll1 = myDice.roll();
+    var roll2 = myDice.roll();
+    var oldField = 0;
+    var newField = 0;
+    //console.log("dice1 : " + roll1 + "\tdice2: "+ roll2);
+    var currentBoard = myGame.getRooms()[roomID].getBoard();
+    for (var iter in myGame.getRooms()[roomID].getPlayers())
+    {
+      oldField = myGame.getRooms()[roomID].getPlayers()[iter].getField();
 
-                    // field not owned -- works like a charm!
-                    if (currentBoard[currentField - 1].getOwner() == null) {
-                        console.log("field " + currentBoard[currentField - 1].getName() + "available to buy");
-                        // check if enough money 
-                        var immoPrice = currentBoard[currentField - 1].getPriceModel().getPrice();
-                        if (player.getMoney() >= immoPrice) {
-                            // if enough --> buy?
-                            console.log('\tbuy field ' + currentBoard[currentField - 1].getName() + '?');
-                            socket.emit('buy field?', currentField);
-                        } else {
-                            // else --> message not enough money
-                            console.log('\t' + currentBoard[currentField - 1].getName() + ' too expensive for ' + name);
-                            socket.emit('field too expensive');
-                        }
-                        //---set player as owner for debugging reasons
-                        //console.log(myGame.getRooms()[roomID].getPlayers()[iter].getOwnedFields());
-                        /*currentBoard[currentField-1].setOwner(player);
-                        player.buyField(currentField-1);
-                        player.pay(immoPrice);
-                        console.log(myGame.getRooms()[roomID].getPlayers()[iter].getOwnedFields());*/
-                        //----
-                    }
-                    // field owned by yourself - buy house?
-                    else if (currentBoard[currentField - 1].getOwner().getName() == name) {
-                        console.log('YOU da owner!!! [' + name + ']');
-                        // if enough money --> buy?
-                        // TODO: hotel needs to be considered!!!
-                        var housePrice = currentBoard[currentField - 1].getPriceModel().getPriceHouse();
-                        if (player.getMoney() >= housePrice) {
-                            console.log('\tbuy house on ' + currentBoard[currentField - 1].getName() + '?');
-                            socket.emit('buy house?', currentField);
-                        } else {
-                            // else --> message not enough money
-                            console.log('\thouse too expensive for ' + name);
-                            socket.emit('house too expensive');
-                        }
-                        //---- buy house for debugging reasons
-                        /*currentBoard[currentField-1].buyHouse();
-                        player.pay(housePrice);*/
-                        //----
-                    }
-                    // field owned by somebody else - pay rent!
-                    else {
-                        console.log('field owned by ' + currentBoard[currentField - 1].getOwner().getName() + ' - pay rent!');
-                        var rent = currentBoard[currentField - 1].getRent();
-
-                        player.pay(rent);
-                        currentBoard[currentField - 1].getOwner().receive(rent);
-
-                        console.log('\t' + player.getName() + ' payed ' + currentBoard[currentField - 1].getOwner().getName() + ' ' + rent);
-                        socket.emit('pay rent!', rent);
-                    }
-                    console.log('--------');
-                } else
-                    console.log('--------');
-            }
-
-            //socket.emit('show figures', iter, myGame.getRooms()[roomID].getPlayers()[iter].getField());
-            io.sockets.in(socket.roomID).emit('show figures', myGame.getRooms()[roomID].getPlayers()[iter].getPlayerNr() - 1, myGame.getRooms()[roomID].getPlayers()[iter].getField());
+      if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === name)
+      {
+        myGame.getRooms()[roomID].getPlayers()[iter].makeMove(roll1 + roll2);
+        var currentField = myGame.getRooms()[roomID].getPlayers()[iter].getField();
+        console.log(name + " moves to field " + currentField + " [" + roll1 + "+" + roll2 + "]");
+        if (currentBoard[currentField - 1].getType() == RISK)
+        {
+          console.log("apply risk card");
+          card_id = myGame.getRooms()[roomID].getRiskCards().draw();
+          socket.emit('receive riskcard', card_id);
+          myGame.getRooms()[roomID].getRiskCards().getCardById(card_id).apply(myGame.getRooms()[roomID].getPlayers()[iter]);
         }
-        socket.emit('dice results', roll1, roll2);
-        //socket.emit('dice results', roll1, roll2, myGame.getRooms()[roomID].getPlayers()[iter].getField());
-		
-		
-		var r = myGame.getRooms()[roomID];
-		r.nextPlayer()
-		
-		io.sockets.in(socket.roomID).emit('active player', r.getCurrentPlayerIndex())
-		console.log("Active Player: " + r.getCurrentPlayerIndex())
-		
-    });
+        else if (currentBoard[currentField - 1].getType() == JOB)
+        {
+          console.log("apply job card");
+          card_id = myGame.getRooms()[roomID].getJobCards().draw();
+          socket.emit('receive jobcard', card_id);
+          myGame.getRooms()[roomID].getJobCards().getCardById(card_id).apply(myGame.getRooms()[roomID].getPlayers()[iter]);
+        }
+        else if (currentBoard[currentField - 1].getType() == FELONY)
+        {
+          console.log(myGame.getRooms()[roomID].getPlayers()[iter].getName() + " thrown in prison");
+          socket.emit('throw in prison');
+          myGame.getRooms()[roomID].getPlayers()[iter].setField(31);
+          myGame.getRooms()[roomID].getPlayers()[iter].throwInPrison(3);
+        }
+        else if (currentBoard[currentField - 1].getType() == IMMO)
+        {
+          console.log("immo field");
+          var player = myGame.getRooms()[roomID].getPlayers()[iter];
+
+          // field not owned -- works like a charm!
+          if (currentBoard[currentField - 1].getOwner() == null)
+          {
+            console.log("field " + currentBoard[currentField - 1].getName() + "available to buy");
+            // check if enough money
+            var immoPrice = currentBoard[currentField - 1].getPriceModel().getPrice();
+            if (player.getMoney() >= immoPrice)
+            {
+              // if enough --> buy?
+              console.log('\tbuy field ' + currentBoard[currentField - 1].getName() + '?');
+              socket.emit('buy field?', currentField);
+            }
+            else
+            {
+              // else --> message not enough money
+              console.log('\t' + currentBoard[currentField - 1].getName() + ' too expensive for ' + name);
+              socket.emit('field too expensive');
+            }
+            //---set player as owner for debugging reasons
+            //console.log(myGame.getRooms()[roomID].getPlayers()[iter].getOwnedFields());
+            /*currentBoard[currentField-1].setOwner(player);
+             player.buyField(currentField-1);
+             player.pay(immoPrice);
+             console.log(myGame.getRooms()[roomID].getPlayers()[iter].getOwnedFields());*/
+            //----
+          }
+          // field owned by yourself - buy house?
+          else if (currentBoard[currentField - 1].getOwner().getName() == name)
+          {
+            console.log('YOU da owner!!! [' + name + ']');
+            // if enough money --> buy?
+            // TODO: hotel needs to be considered!!!
+            var housePrice = currentBoard[currentField - 1].getPriceModel().getPriceHouse();
+            if (player.getMoney() >= housePrice)
+            {
+              console.log('\tbuy house on ' + currentBoard[currentField - 1].getName() + '?');
+              socket.emit('buy house?', currentField);
+            }
+            else
+            {
+              // else --> message not enough money
+              console.log('\thouse too expensive for ' + name);
+              socket.emit('house too expensive');
+            }
+            //---- buy house for debugging reasons
+            /*currentBoard[currentField-1].buyHouse();
+             player.pay(housePrice);*/
+            //----
+          }
+          // field owned by somebody else - pay rent!
+          else
+          {
+            console.log('field owned by ' + currentBoard[currentField - 1].getOwner().getName() + ' - pay rent!');
+            var rent = currentBoard[currentField - 1].getRent();
+
+            player.pay(rent);
+            currentBoard[currentField - 1].getOwner().receive(rent);
+
+            console.log('\t' + player.getName() + ' payed ' + currentBoard[currentField - 1].getOwner().getName() + ' ' + rent);
+            socket.emit('pay rent!', rent);
+          }
+          console.log('--------');
+        }
+        else
+          console.log('--------');
+      }
+
+      //socket.emit('show figures', iter, myGame.getRooms()[roomID].getPlayers()[iter].getField());
+      io.sockets.in(socket.roomID).emit('show figures', myGame.getRooms()[roomID].getPlayers()[iter].getPlayerNr() - 1, myGame.getRooms()[roomID].getPlayers()[iter].getField());
+    }
+    socket.emit('dice results', roll1, roll2);
+    //socket.emit('dice results', roll1, roll2, myGame.getRooms()[roomID].getPlayers()[iter].getField());
+
+
+    var r = myGame.getRooms()[roomID];
+    r.nextPlayer();
+
+    while(r.getCurrentPlayer().isInPrison() != 0)
+    {
+      var rounds = r.getCurrentPlayer().isInPrison();
+      console.log('player ' + r.getCurrentPlayerIndex() + ' in prison for ' + rounds-1 + ' turns');
+      r.getCurrentPlayer().throwInPrison(rounds-1);
+      r.nextPlayer();
+    }
+
+    io.sockets.in(socket.roomID).emit('active player', r.getCurrentPlayer().getUniqueID());
+    console.log("Active Player: " + r.getCurrentPlayerIndex() + " with ID: " + r.getCurrentPlayer().getUniqueID());
+  });
 
     socket.on('choose character', function(playerName, charID, roomID) {
         socket.charID = charID;
@@ -390,7 +423,8 @@ io.sockets.on('connection', function(socket) {
     socket.on('buy house!', function(name, roomID, currentField) {
         var currentBoard = myGame.getRooms()[roomID].getBoard();
         for (var iter in myGame.getRooms()[roomID].getPlayers()) {
-            if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === name) {
+            if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === name)
+            {
                 var player = myGame.getRooms()[roomID].getPlayers()[iter];
                 var housePrice = currentBoard[currentField - 1].getPriceModel().getPriceHouse();
                 currentBoard[currentField - 1].buyHouse();

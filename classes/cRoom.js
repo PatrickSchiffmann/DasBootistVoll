@@ -117,6 +117,10 @@ function Room(id) {
   this.getCurrentPlayerIndex = function() {
     return currentPlayerIndex_;
   }
+
+  this.getCurrentPlayer = function() {
+    return playing_[currentPlayerIndex_-1];
+  }
 }
 
 module.exports = Room;

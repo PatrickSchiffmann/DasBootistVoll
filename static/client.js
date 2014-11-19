@@ -262,17 +262,26 @@ jQuery(function($) {
 	socket.on('active player', function(id) {
 		//Würfel Button de(ak)tivieren
 		if(uniqueId == id)
-			$('#button-dices').removeAttr('disabled'); //Enable
+    {
+      $('#button-dices').removeAttr('disabled');
+    } //Enable
 		else
-			$('#button-dices').attr('disabled', 'disabled'); //Disable
-		
+    {
+      $('#button-dices').attr('disabled', 'disabled'); //Disable
+    }
+
 		//Playerlist alle Player grau, aktiver normal
-		for (var i = 1; i <= 8; i++) {
+		for (var i = 1; i <= 8; i++)
+    {
 			if(i == id)
-				$('#charPic' + (i)).removeClass('playerlistPicGray')
-			else
-				$('#charPic' + (i)).addClass('playerlistPicGray')
-        }
+      {
+        $('#charPic' + (i)).removeClass('playerlistPicGray');
+      }
+      else
+      {
+        $('#charPic' + (i)).addClass('playerlistPicGray');
+      }
+    }
     });
 	    
 
@@ -296,20 +305,24 @@ jQuery(function($) {
         alert('Miete zahlen: ' + data);
     });
 	
-	socket.on('field owner', function(fieldNr, playerUid) {
-		//Fieldstatus als dritten Parameter hinzufügen, fehlt noch serverseitig
-		if(fieldNr < 12) {
-			cssclass = "img-owner-top";
-		} else if (fieldNr < 21) {
-			cssclass = "img-owner-right";
-		} else if (fieldNr < 30) {
-			cssclass = "img-owner-right";
-		} else {
-			cssclass = "img-owner-left";
-		}
-		
-		 $("#fieldowner" + (fieldNr)).append('<img id="owner-' + (fieldNr) + '" src="media/houses/' + playerUid + '-0.png" />');
-	});
+    socket.on('field owner', function(fieldNr, playerUid) {
+      //Fieldstatus als dritten Parameter hinzufügen, fehlt noch serverseitig
+      if(fieldNr < 12) {
+        cssclass = "img-owner-top";
+      } else if (fieldNr < 21) {
+        cssclass = "img-owner-right";
+      } else if (fieldNr < 30) {
+        cssclass = "img-owner-right";
+      } else {
+        cssclass = "img-owner-left";
+      }
+
+       $("#fieldowner" + (fieldNr)).append('<img id="owner-' + (fieldNr) + '" src="media/houses/' + playerUid + '-0.png" />');
+    });
+
+    socket.on('throw in prison', function() {
+      alert('Du musst ins Gefängnis!');
+    });
 
 		//Was tut des Event?
     socket.on('disconnected', function() {

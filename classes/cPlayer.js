@@ -40,6 +40,7 @@ function Player(name, playerNr)
   var playerNr_ = playerNr;
   var ready_ = false;
   var ownedFields = [];
+  var unique_id_ = generateUniqueID();
 
   this.buyField = function(nr) {
     ownedFields.push(nr);
@@ -66,6 +67,7 @@ function Player(name, playerNr)
   var majority_ = null;
   var base_status_ = 0;
   var age_ = 0;
+  var in_prison_ = 0;
 
   //Education
   //var education_level_ = 0;
@@ -100,6 +102,8 @@ function Player(name, playerNr)
   this.getField = function() {return field_;}
   this.getPlayerNr = function() {return playerNr_;}
   this.isReady = function() {return ready_;}
+  this.isInPrison = function() {return in_prison_;}
+  this.getUniqueID = function() {return unique_id_;}
 
   this.getCharName = function() {return charName_;}
   this.getSex = function() {return sex_;}
@@ -135,6 +139,7 @@ function Player(name, playerNr)
   this.setField = function(field) {field_ = field;}
   this.setPlayerNr = function(playerNr) {playerNr_ = playerNr;}
   this.setReady = function(ready) {ready_ = ready;}
+  this.throwInPrison = function(turns) {in_prison_ = turns;}
 
   this.setCharName = function(charName) {charName_ = charName;}
   this.setSex = function(sex) {sex_ = sex;}
@@ -284,14 +289,25 @@ function Player(name, playerNr)
     return salary;
   }
 
-  this.print = function()
-  {
+  this.print = function() {
     console.log('     Playerinfo: ' + name_ + ' (' + money_ + ')');
     console.log('Bildung: ' + education_level_ + ' Sprachen: ' + language_);
     console.log('Führerschein: ' + licence_ + ' MR-Traienr ' + hr_trainer_);
     console.log('EU ' + eu_citizen_ + ' Aufenthalt ' + residency_ + ' Nostrifiziert ' + nostrification_);
   }
+}
 
+function generateUniqueID()
+{
+  var _sym = 'abcdefghijklmnopqrstuvwxyz1234567890';
+  var str = '';
+
+  for(var i = 0; i < 10; i++)
+  {
+    str += _sym[parseInt(Math.random() * (_sym.length))];
+  }
+  console.log('id = ' + str);
+  return str;
 }
 
 module.exports = Player;
