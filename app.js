@@ -35,9 +35,9 @@ const HI = 1;
 const AVG = 3;
 
 var express = require('express'),
-    app = express(),
-    server = require('http').createServer(app),
-    io = require('socket.io').listen(server);
+  app = express(),
+  server = require('http').createServer(app),
+  io = require('socket.io').listen(server);
 
 server.listen(3000);
 
@@ -57,71 +57,78 @@ var myGame = new Game();
 myGame.initialise();
 var myDice = new Dice();
 
-io.sockets.on('connection', function(socket) {
+io.sockets.on('connection', function (socket)
+{
 
-    socket.on('disconnect', function() {
-		if(socket.name === undefined)
-			console.log("Error while disconnecting")
-		else
-		{
-		    console.log('player left: ' + socket.name + ' room ' + (socket.room + 1));
-			var roomID = socket.room;
-			var playerName = socket.name;
-			if (myGame.getRooms()[roomID].getPlayers())
-				for (var iter in myGame.getRooms()[roomID].getPlayers()) {
-					if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === playerName) {
-						var p = myGame.getRooms()[roomID].getPlayers()[iter];
-						io.sockets.in(socket.roomID).emit('delete figure', p.getField(), p.getPlayerNr());
-						myGame.removePlayer(myGame.getRooms()[roomID].getPlayers()[iter], roomID);
-					}
-				}
-
-			console.log('player left: playernumber = ' + myGame.getRooms()[roomID].getNrPlayers());
-			io.sockets.in(socket.roomID).emit('update playernumber', myGame.getRooms()[roomID].getNrPlayers());
-
-			var currRoom = myGame.getRooms()[roomID];
-			var playerlist = new Array();
-			for (var i = 0; i < currRoom.getNrPlayers(); i++) {
-				playerlist[i] = [currRoom.getPlayers()[i].getName(),
-					currRoom.getPlayers()[i].getCharID(),
-					currRoom.getPlayers()[i].getPlayerNr()
-				];
-			}
-			io.sockets.in(socket.room).emit('update playerlist', JSON.stringify(playerlist));
-		}
-    });
-
-    socket.on('join room', function(room, name) {
-        // socket sachen schmeißen und in den room[roomid] speichern
-        myGame.getRooms()[room].setNrPlayers(myGame.getRooms()[room].getNrPlayers() + 1);
-		//console.log('new room playernumber = ' + myGame.getRooms()[room].getNrPlayers());
-        var playerNr = myGame.getRooms()[room].generatePlayerNr();
-        
-		//console.log('playerNr = ' + playerNr);
-        socket.emit('update playernumber', myGame.getRooms()[room].getNrPlayers());
-        socket.name = name;
-        socket.room = room;
-
-        // TODO: check if name already exists !!!
-        var newPlayer = new Player(name, playerNr);
-        socket.playerNr = playerNr;
-        myGame.addPlayer(newPlayer, room);
-
-        // show all current players including yourself
-        for (var iter in myGame.getRooms()[room].getPlayers()) {
-            var playerNr = myGame.getRooms()[room].getPlayers()[iter].getPlayerNr() - 1;
-            var playerFieldNr = myGame.getRooms()[room].getPlayers()[iter].getField();
-            io.sockets.in(socket.room).emit('show figures', playerNr, playerFieldNr);
+  socket.on('disconnect', function ()
+  {
+    if (socket.name === undefined)
+      console.log("Error while disconnecting")
+    else
+    {
+      console.log('player left: ' + socket.name + ' room ' + (socket.room + 1));
+      var roomID = socket.room;
+      var playerName = socket.name;
+      if (myGame.getRooms()[roomID].getPlayers())
+        for (var iter in myGame.getRooms()[roomID].getPlayers())
+        {
+          if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === playerName)
+          {
+            var p = myGame.getRooms()[roomID].getPlayers()[iter];
+            io.sockets.in(socket.roomID).emit('delete figure', p.getField(), p.getPlayerNr());
+            myGame.removePlayer(myGame.getRooms()[roomID].getPlayers()[iter], roomID);
+          }
         }
 
-        socket.join(socket.room);
-        var j = room + 1;
-        console.log('Player ' + name + ' joined room ' + j + ' with playerNr ' + playerNr);
-        io.sockets.in(socket.room).emit('update playernumber', myGame.getRooms()[room].getNrPlayers());
-        myGame.printPlayers();
-    });
+      console.log('player left: playernumber = ' + myGame.getRooms()[roomID].getNrPlayers());
+      io.sockets.in(socket.roomID).emit('update playernumber', myGame.getRooms()[roomID].getNrPlayers());
 
-  socket.on('is ready', function(name, room)
+      var currRoom = myGame.getRooms()[roomID];
+      var playerlist = new Array();
+      for (var i = 0; i < currRoom.getNrPlayers(); i++)
+      {
+        playerlist[i] = [currRoom.getPlayers()[i].getName(),
+          currRoom.getPlayers()[i].getCharID(),
+          currRoom.getPlayers()[i].getPlayerNr()
+        ];
+      }
+      io.sockets.in(socket.room).emit('update playerlist', JSON.stringify(playerlist));
+    }
+  });
+
+  socket.on('join room', function (room, name)
+  {
+    // socket sachen schmeißen und in den room[roomid] speichern
+    myGame.getRooms()[room].setNrPlayers(myGame.getRooms()[room].getNrPlayers() + 1);
+    //console.log('new room playernumber = ' + myGame.getRooms()[room].getNrPlayers());
+    var playerNr = myGame.getRooms()[room].generatePlayerNr();
+
+    //console.log('playerNr = ' + playerNr);
+    socket.emit('update playernumber', myGame.getRooms()[room].getNrPlayers());
+    socket.name = name;
+    socket.room = room;
+
+    // TODO: check if name already exists !!!
+    var newPlayer = new Player(name, playerNr);
+    socket.playerNr = playerNr;
+    myGame.addPlayer(newPlayer, room);
+
+    // show all current players including yourself
+    for (var iter in myGame.getRooms()[room].getPlayers())
+    {
+      var pNr = myGame.getRooms()[room].getPlayers()[iter].getPlayerNr() - 1;
+      var playerFieldNr = myGame.getRooms()[room].getPlayers()[iter].getField();
+      io.sockets.in(socket.room).emit('show figures', pNr, playerFieldNr);
+    }
+
+    socket.join(socket.room);
+    var j = room + 1;
+    console.log('Player ' + name + ' joined room ' + j + ' with playerNr ' + playerNr);
+    io.sockets.in(socket.room).emit('update playernumber', myGame.getRooms()[room].getNrPlayers());
+    myGame.printPlayers();
+  });
+
+  socket.on('is ready', function (name, room)
   {
     socket.ready = true;
     var r = myGame.getRooms()[room];
@@ -133,14 +140,17 @@ io.sockets.on('connection', function(socket) {
     socket.emit('unique id', p.getUniqueID());
     socket.uid = p.getUniqueID();
 
-    if (r.getNrPlayers() < 2) {
+    if (r.getNrPlayers() < 2)
+    {
       console.log('only one player - can\'t play alone');
       return;
     }
 
     // check if everbody ready
-    for (var iter in r.getPlayers()) {
-      if (!r.getPlayers()[iter].isReady()) {
+    for (var iter in r.getPlayers())
+    {
+      if (!r.getPlayers()[iter].isReady())
+      {
         console.log('[' + room + '] : room not ready');
         return;
       }
@@ -148,7 +158,7 @@ io.sockets.on('connection', function(socket) {
 
     console.log('[' + room + '] : everbody ready!');
     io.sockets.in(socket.room).emit('start game', 'Alle Spieler bereit. Spiel beginnt.');
-    io.sockets.in(socket.room).emit('active player', r.getCurrentPlayer().getUniqueID());
+    io.sockets.in(socket.room).emit('active player', r.getCurrentPlayerIndex(), r.getCurrentPlayer().getUniqueID());
     console.log("Active Player: " + r.getCurrentPlayerIndex() + " with ID: " + r.getCurrentPlayer().getUniqueID());
 
     //io.sockets.in(socket.room).emit('start countdown');
@@ -156,71 +166,82 @@ io.sockets.on('connection', function(socket) {
     return;
   });
 
-    socket.on('leave game', function(playerName, roomID) {
-        console.log('remove Player ' + playerName + ' from room ' + roomID);
-        if (myGame.getRooms()[roomID].getPlayers())
-            for (var iter in myGame.getRooms()[roomID].getPlayers()) {
-                if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === playerName) {
-                    var p = myGame.getRooms()[roomID].getPlayers()[iter];
-                    io.sockets.in(socket.roomID).emit('delete figure', p.getField(), p.getPlayerNr());
-                    myGame.removePlayer(myGame.getRooms()[roomID].getPlayers()[iter], roomID);
-                }
-            }
-        console.log('player left: playernumber = ' + myGame.getRooms()[roomID].getNrPlayers());
-        io.sockets.in(socket.roomID).emit('update playernumber', myGame.getRooms()[roomID].getNrPlayers());
-        for (var iter in myGame.getRooms()[roomID].getPlayers()) {
-            var playerNr = myGame.getRooms()[roomID].getPlayers()[iter].getPlayerNr() - 1;
-            var playerFieldNr = myGame.getRooms()[roomID].getPlayers()[iter].getField();
-            io.sockets.in(socket.room).emit('show figures', playerNr, playerFieldNr);
+  socket.on('leave game', function (playerName, roomID)
+  {
+    console.log('remove Player ' + playerName + ' from room ' + roomID);
+    if (myGame.getRooms()[roomID].getPlayers())
+      for (var iter in myGame.getRooms()[roomID].getPlayers())
+      {
+        if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === playerName)
+        {
+          var p = myGame.getRooms()[roomID].getPlayers()[iter];
+          io.sockets.in(socket.roomID).emit('delete figure', p.getField(), p.getPlayerNr());
+          myGame.removePlayer(myGame.getRooms()[roomID].getPlayers()[iter], roomID);
         }
-    });
+      }
+    console.log('player left: playernumber = ' + myGame.getRooms()[roomID].getNrPlayers());
+    io.sockets.in(socket.roomID).emit('update playernumber', myGame.getRooms()[roomID].getNrPlayers());
+    for (var iter in myGame.getRooms()[roomID].getPlayers())
+    {
+      var playerNr = myGame.getRooms()[roomID].getPlayers()[iter].getPlayerNr() - 1;
+      var playerFieldNr = myGame.getRooms()[roomID].getPlayers()[iter].getField();
+      io.sockets.in(socket.room).emit('show figures', playerNr, playerFieldNr);
+    }
+  });
 
-    socket.on('get name', function() {
-        socket.emit('receive name', socket.name);
-    });
+  socket.on('get name', function ()
+  {
+    socket.emit('receive name', socket.name);
+  });
 
-    socket.on('get rooms', function() {
-        socket.emit('room list', myGame.getRooms());
-    });
+  socket.on('get rooms', function ()
+  {
+    socket.emit('room list', myGame.getRooms());
+  });
 
-    socket.on('update info', function(name, roomID) {
-        //name, charakter name, statuspkts, income, money
-        var currentPlayer;
-        for (var iter in myGame.getRooms()[roomID].getPlayers()) {
-            if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === name) {
-                currentPlayer = myGame.getRooms()[roomID].getPlayers()[iter];
-            }
-        }
-        //console.log("found: currentPlayer is " + currentPlayer.getName());
-        socket.emit('receive charactername', currentPlayer.getCharacter().getName());
-        socket.emit('receive statuspkts', currentPlayer.getStatus());
-        socket.emit('receive income', currentPlayer.getSalary());
-        socket.emit('receive moneysack', currentPlayer.getMoney());
-    });
+  socket.on('update info', function (name, roomID)
+  {
+    //name, charakter name, statuspkts, income, money
+    var currentPlayer;
+    for (var iter in myGame.getRooms()[roomID].getPlayers())
+    {
+      if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === name)
+      {
+        currentPlayer = myGame.getRooms()[roomID].getPlayers()[iter];
+      }
+    }
+    //console.log("found: currentPlayer is " + currentPlayer.getName());
+    socket.emit('receive charactername', currentPlayer.getCharacter().getName());
+    socket.emit('receive statuspkts', currentPlayer.getStatus());
+    socket.emit('receive income', currentPlayer.getSalary());
+    socket.emit('receive moneysack', currentPlayer.getMoney());
+  });
 
-    socket.on('get characters', function() {
-        var characters = myGame.getCharacters();
-        var charNames = [];
+  socket.on('get characters', function ()
+  {
+    var characters = myGame.getCharacters();
+    var charNames = [];
 
-        // create rooms
-        for (var iter in characters)
-            charNames.push(characters[iter].getName());
+    // create rooms
+    for (var iter in characters)
+      charNames.push(characters[iter].getName());
 
-        socket.emit('receive characters', charNames);
-    });
+    socket.emit('receive characters', charNames);
+  });
 
-    socket.on('show fieldinfo', function(fieldNr) {
-        // fieldRent, 1house, 2house, 3house, 4house, hotel, kaufpreis, hauspreis, hotelpreis
-        var priceModel = myGame.getBoard()[fieldNr - 1].getPriceModel();
-        socket.emit('receive fieldinfo',
-            myGame.getBoard()[fieldNr - 1].getName(), myGame.getBoard()[fieldNr - 1].getGhettoName(), priceModel.getRent(),
-            priceModel.getHouse1Rent(), priceModel.getHouse2Rent(),
-            priceModel.getHouse3Rent(), priceModel.getHouse4Rent(),
-            priceModel.getHotelRent(), priceModel.getPrice(),
-            priceModel.getPriceHouse(), priceModel.getPriceHotel());
-    });
+  socket.on('show fieldinfo', function (fieldNr)
+  {
+    // fieldRent, 1house, 2house, 3house, 4house, hotel, kaufpreis, hauspreis, hotelpreis
+    var priceModel = myGame.getBoard()[fieldNr - 1].getPriceModel();
+    socket.emit('receive fieldinfo',
+      myGame.getBoard()[fieldNr - 1].getName(), myGame.getBoard()[fieldNr - 1].getGhettoName(), priceModel.getRent(),
+      priceModel.getHouse1Rent(), priceModel.getHouse2Rent(),
+      priceModel.getHouse3Rent(), priceModel.getHouse4Rent(),
+      priceModel.getHotelRent(), priceModel.getPrice(),
+      priceModel.getPriceHouse(), priceModel.getPriceHotel());
+  });
 
-  socket.on('throw dices', function(name, roomID)
+  socket.on('throw dices', function (name, roomID)
   {
     var roll1 = myDice.roll();
     var roll2 = myDice.roll();
@@ -340,96 +361,109 @@ io.sockets.on('connection', function(socket) {
     var r = myGame.getRooms()[roomID];
     r.nextPlayer();
 
-    while(r.getCurrentPlayer().isInPrison() != 0)
+    while (r.getCurrentPlayer().isInPrison() != 0)
     {
       var rounds = r.getCurrentPlayer().isInPrison();
-      console.log('player ' + r.getCurrentPlayerIndex() + ' in prison for ' + rounds-1 + ' turns');
-      r.getCurrentPlayer().throwInPrison(rounds-1);
+      console.log('player ' + r.getCurrentPlayerIndex() + ' in prison for ' + rounds - 1 + ' turns');
+      r.getCurrentPlayer().throwInPrison(rounds - 1);
       r.nextPlayer();
     }
 
-    io.sockets.in(socket.roomID).emit('active player', r.getCurrentPlayer().getUniqueID());
+    io.sockets.in(socket.roomID).emit('active player', r.getCurrentPlayerIndex(), r.getCurrentPlayer().getUniqueID());
     console.log("Active Player: " + r.getCurrentPlayerIndex() + " with ID: " + r.getCurrentPlayer().getUniqueID());
   });
 
-    socket.on('choose character', function(playerName, charID, roomID) {
-        socket.charID = charID;
-        var myChar = myGame.getCharacters()[charID];
-        for (var iter in myGame.getRooms()[roomID].getPlayers()) {
-            if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === playerName) {
-                myGame.getRooms()[roomID].getPlayers()[iter].setCharID(charID);
-                myGame.getRooms()[roomID].getPlayers()[iter].setCharacter(myChar);
-                myGame.getRooms()[roomID].getPlayers()[iter].setCharName(myChar.getName());
-                myGame.getRooms()[roomID].getPlayers()[iter].setSex(myChar.getSex());
-                myGame.getRooms()[roomID].getPlayers()[iter].setEuCitizen(myChar.isEU()); // setzt du nostrifikation auch für EU bürger? wichtig!
-                myGame.getRooms()[roomID].getPlayers()[iter].setMajority(myChar.isMajority());
-                myGame.getRooms()[roomID].getPlayers()[iter].setBaseStatus(myChar.getStatus());
-                myGame.getRooms()[roomID].getPlayers()[iter].setAge(myChar.getAge());
-            }
-        }
-        //myGame.printCharacters();
-        /*var roll1 = myDice.roll();
-        var roll2 = myDice.roll();
-        socket.emit('dice results', roll1, roll2);*/
-        socket.emit('room list', myGame.getRooms());
-    });
+  socket.on('choose character', function (playerName, charID, roomID)
+  {
+    socket.charID = charID;
+    var myChar = myGame.getCharacters()[charID];
+    for (var iter in myGame.getRooms()[roomID].getPlayers())
+    {
+      if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === playerName)
+      {
+        myGame.getRooms()[roomID].getPlayers()[iter].setCharID(charID);
+        myGame.getRooms()[roomID].getPlayers()[iter].setCharacter(myChar);
+        myGame.getRooms()[roomID].getPlayers()[iter].setCharName(myChar.getName());
+        myGame.getRooms()[roomID].getPlayers()[iter].setSex(myChar.getSex());
+        myGame.getRooms()[roomID].getPlayers()[iter].setEuCitizen(myChar.isEU()); // setzt du nostrifikation auch für EU bürger? wichtig!
+        myGame.getRooms()[roomID].getPlayers()[iter].setMajority(myChar.isMajority());
+        myGame.getRooms()[roomID].getPlayers()[iter].setBaseStatus(myChar.getStatus());
+        myGame.getRooms()[roomID].getPlayers()[iter].setAge(myChar.getAge());
+      }
+    }
+    //myGame.printCharacters();
+    /*var roll1 = myDice.roll();
+     var roll2 = myDice.roll();
+     socket.emit('dice results', roll1, roll2);*/
+    socket.emit('room list', myGame.getRooms());
+  });
 
-    socket.on('update playerlist', function(room) {
-        var playerlist = new Array();
+  socket.on('update playerlist', function (room)
+  {
+    var playerlist = new Array();
 
-        /*
-        for( var i = 0; i < io.sockets.clients(socket.room).length; i++) {
-            playerlist[i] = [io.sockets.clients(socket.room)[i].name, io.sockets.clients(socket.room)[i].charID, io.sockets.clients(socket.room)[i].playerNr];
-        }
-        */
-        var currRoom = myGame.getRooms()[room];
+    /*
+     for( var i = 0; i < io.sockets.clients(socket.room).length; i++) {
+     playerlist[i] = [io.sockets.clients(socket.room)[i].name, io.sockets.clients(socket.room)[i].charID, io.sockets.clients(socket.room)[i].playerNr];
+     }
+     */
+    var currRoom = myGame.getRooms()[room];
 
-        for (var i = 0; i < currRoom.getNrPlayers(); i++) {
-            playerlist[i] = [currRoom.getPlayers()[i].getName(),
-                currRoom.getPlayers()[i].getCharID(),
-                currRoom.getPlayers()[i].getPlayerNr()
-            ];
-        }
-        io.sockets.in(socket.room).emit('update playerlist', JSON.stringify(playerlist));
-    });
+    for (var i = 0; i < currRoom.getNrPlayers(); i++)
+    {
+      playerlist[i] = [currRoom.getPlayers()[i].getName(),
+        currRoom.getPlayers()[i].getCharID(),
+        currRoom.getPlayers()[i].getPlayerNr()
+      ];
+    }
+    io.sockets.in(socket.room).emit('update playerlist', JSON.stringify(playerlist));
+  });
 
-    socket.on('send message', function(data, room) {
-        if (data == '') {
-            return;
-        }
-		
-		io.sockets.in(socket.room).emit('new chat message', JSON.stringify({
-			'name': socket.name,
-            'msg': data
-        }));
-    });
+  socket.on('send message', function (data, room)
+  {
+    if (data == '')
+    {
+      return;
+    }
 
-    socket.on('buy field!', function(name, roomID, currentField) {
-        var currentBoard = myGame.getRooms()[roomID].getBoard();
-        for (var iter in myGame.getRooms()[roomID].getPlayers()) {
-            if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === name) {
-                var player = myGame.getRooms()[roomID].getPlayers()[iter];
-                var immoPrice = currentBoard[currentField - 1].getPriceModel().getPrice();
-                currentBoard[currentField - 1].setOwner(player);
-                player.buyField(currentField - 1);
-                player.pay(immoPrice);
-                console.log(myGame.getRooms()[roomID].getPlayers()[iter].getOwnedFields());
-				//Gibts einen Fieldstatus oder ähnliches? int 0..4, 0 = grundstück, 1..3 häuser, 4 hotel?
-				io.sockets.in(socket.room).emit('field owner', currentField, socket.uid);
-            }
-        }
-    });
+    io.sockets.in(socket.room).emit('new chat message', JSON.stringify({
+      'name': socket.name,
+      'msg': data
+    }));
+  });
 
-    socket.on('buy house!', function(name, roomID, currentField) {
-        var currentBoard = myGame.getRooms()[roomID].getBoard();
-        for (var iter in myGame.getRooms()[roomID].getPlayers()) {
-            if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === name)
-            {
-                var player = myGame.getRooms()[roomID].getPlayers()[iter];
-                var housePrice = currentBoard[currentField - 1].getPriceModel().getPriceHouse();
-                currentBoard[currentField - 1].buyHouse();
-                player.pay(housePrice);
-            }
-        }
-    });
+  socket.on('buy field!', function (name, roomID, currentField)
+  {
+    var currentBoard = myGame.getRooms()[roomID].getBoard();
+    for (var iter in myGame.getRooms()[roomID].getPlayers())
+    {
+      if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === name)
+      {
+        var player = myGame.getRooms()[roomID].getPlayers()[iter];
+        var immoPrice = currentBoard[currentField - 1].getPriceModel().getPrice();
+        currentBoard[currentField - 1].setOwner(player);
+        player.buyField(currentField - 1);
+        player.pay(immoPrice);
+        console.log(myGame.getRooms()[roomID].getPlayers()[iter].getOwnedFields());
+        //Gibts einen Fieldstatus oder ähnliches? int 0..4, 0 = grundstück, 1..3 häuser, 4 hotel?
+        var nr = myGame.getRooms()[roomID].getPlayers()[iter].getPlayerNr();
+        io.sockets.in(socket.room).emit('field owner', currentField, nr);
+      }
+    }
+  });
+
+  socket.on('buy house!', function (name, roomID, currentField)
+  {
+    var currentBoard = myGame.getRooms()[roomID].getBoard();
+    for (var iter in myGame.getRooms()[roomID].getPlayers())
+    {
+      if (myGame.getRooms()[roomID].getPlayers()[iter].getName() === name)
+      {
+        var player = myGame.getRooms()[roomID].getPlayers()[iter];
+        var housePrice = currentBoard[currentField - 1].getPriceModel().getPriceHouse();
+        currentBoard[currentField - 1].buyHouse();
+        player.pay(housePrice);
+      }
+    }
+  });
 });
