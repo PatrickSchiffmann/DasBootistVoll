@@ -26,10 +26,25 @@ function CardAbsurd(id, number, name, absurd_id)
 		return absurd_id_;
 	}
 
-	this.apply = function()
+	this.apply = function(player)
 	{
 		console.log('-------------------');
 		console.log('apply CardAbsurd:');
+
+    if(absurd_id_ == 1)
+    {
+      console.log('Gerichtsverhandlung');
+      if(player.getMoney() >= 1000)
+      {
+        player.pay(1000);
+      }
+      else
+      {
+        player.setField(31);
+        player.throwInPrison(2);
+      }
+    }
+
 		console.log('**** implement ****');
 		console.log('Gerichtsverhandlung && Steuerfahndung');
 		console.log('-------------------');

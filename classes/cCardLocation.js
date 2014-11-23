@@ -9,33 +9,49 @@ function CardLocation(id, number, name, location)
 	this.getName = function()
 	{
 		return name_;
-	}
+	};
   
 	this.getNumber = function()
 	{
 		return number_;
-	}
+	};
   
 	this.getId = function()
 	{
 		return id_;
-	}
+	};
   
 	this.getLocation = function()
 	{
 		return location_;
-	}
+	};
 
-	this.apply = function()
+  this.getField = function()
+  {
+    if(location_ == 1)
+    {
+      return 31;
+    }
+    if(location_ == 2)
+    {
+      return 21;
+    }
+  };
+
+	this.apply = function(player)
 	{
 		console.log('-------------------');
 		console.log('apply CardLocation:');
-		console.log('**** implement ****');
+    console.log('set playerfield_ to ' + this.getField());
+    player.setField(this.getField());
+    player.throwInPrison(2);
 		console.log('-------------------');
-	}
+	};
 
-	this.print = function () {
+	this.print = function ()
+  {
   		console.log(this.getName() + ' Location: ' + this.getLocation() + '. ' + this.getNumber() + ' Karten im Stapel');
-	}
+	};
 }
+
 module.exports = CardLocation;
