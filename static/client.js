@@ -205,21 +205,22 @@ jQuery(function ($)
     $("#field" + currentField).append('<img id="figure-' + (playerNr + 1) + '" src="media/player/p' + (playerNr + 1) + '.png" />');
   });
 
-  socket.on('receive fieldinfo', function (name, ghetto, rent, house1, house2,
-                                           house3, house4, hotel, price, priceHouse, priceHotel)
+  socket.on('receive fieldinfo', function(data)
   {
-    $('#fieldName').text(name);
-    $('#fieldViertel').text(ghetto);
-    $('#fieldRent').text(rent);
-    $('#field1House').text(house1);
-    $('#field2House').text(house2);
-    $('#field3House').text(house3);
-    $('#field4House').text(house4);
-    $('#fieldHotel').text(hotel);
-    $('#fieldPrice').text(price);
-    $('#fieldHousePrice').text(priceHouse);
-    $('#fieldHotelPrice').text(priceHotel);
+    var infos = jQuery.parseJSON(data);
 
+    $('#fieldName').text(infos['name']);
+    $('#fieldViertel').text(infos['ghetto']);
+    $('#fieldRent').text(infos['rent']);
+    $('#field1House').text(infos['house1']);
+    $('#field2House').text(infos['house2']);
+    $('#field3House').text(infos['house3']);
+    $('#field4House').text(infos['house4']);
+    $('#fieldHotel').text(infos['hotel']);
+    $('#fieldPrice').text(infos['price']);
+    $('#fieldHousePrice').text(infos['priceHouse']);
+    $('#fieldHotelPrice').text(infos['priceHotel']);
+    $('#fieldOwner').text(infos['owner']);
   });
 
   socket.on('delete figure', function (fieldNr, playerNr)
@@ -310,11 +311,11 @@ jQuery(function ($)
     //Würfel Button de(ak)tivieren
     if (uniqueId == uid)
     {
-      $('#button-dices').removeAttr('disabled');
+      $('#button-dices').prop('disabled', false).focus();
     } //Enable
     else
     {
-      $('#button-dices').attr('disabled', 'disabled'); //Disable
+      $('#button-dices').prop('disabled', true); //Disable
     }
 
     //Playerlist alle Player grau, aktiver normal
@@ -436,6 +437,7 @@ function selectCharacter(charID)
   // socket.emit('send message', "/ready", getRoomNumber());
   socket.emit('update playerlist', getRoomNumber());
   $('#playerlist').show();
+  $('#readyButton').focus();
 }
 
 function isReady()
@@ -450,6 +452,7 @@ function throwDices()
   $('#dice1').attr('class', 'die');
   $('#dice2').attr('class', 'die');
   socket.emit('throw dices', getPlayerName(), getRoomNumber());
+  $('#button-dices').prop('disabled', false);
 }
 
 function getFieldInfo(fieldNr)

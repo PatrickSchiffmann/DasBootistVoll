@@ -44,10 +44,12 @@ function CardAbsurd(id, number, name, absurd_id)
         player.throwInPrison(2);
       }
     }
-
-		console.log('**** implement ****');
-		console.log('Gerichtsverhandlung && Steuerfahndung');
-		console.log('-------------------');
+    else if (absurd_id_ == 2)
+    {
+      console.log('Steuerfahndung');
+      console.log('**** implement ****');
+    }
+    console.log('-------------------');
 	}
 
 	this.print = function () {

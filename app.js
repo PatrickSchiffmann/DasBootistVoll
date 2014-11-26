@@ -231,14 +231,32 @@ io.sockets.on('connection', function (socket)
 
   socket.on('show fieldinfo', function (fieldNr)
   {
-    // fieldRent, 1house, 2house, 3house, 4house, hotel, kaufpreis, hauspreis, hotelpreis
-    var priceModel = myGame.getBoard()[fieldNr - 1].getPriceModel();
-    socket.emit('receive fieldinfo',
-      myGame.getBoard()[fieldNr - 1].getName(), myGame.getBoard()[fieldNr - 1].getGhettoName(), priceModel.getRent(),
-      priceModel.getHouse1Rent(), priceModel.getHouse2Rent(),
-      priceModel.getHouse3Rent(), priceModel.getHouse4Rent(),
-      priceModel.getHotelRent(), priceModel.getPrice(),
-      priceModel.getPriceHouse(), priceModel.getPriceHotel());
+    // fieldRent, 1house, 2house, 3house, 4house, hotel, kaufpreis, hauspreis, hotelpreis, besitzer
+    var infos = {};
+    var field = myGame.getBoard()[fieldNr - 1];
+    var priceModel = field.getPriceModel();
+
+    infos['name']   = field.getName();
+    infos['ghetto'] = field.getGhettoName();
+    infos['rent']   = priceModel.getRent();
+    infos['house1'] = priceModel.getHouse1Rent();
+    infos['house2'] = priceModel.getHouse2Rent();
+    infos['house3'] = priceModel.getHouse3Rent();
+    infos['house4'] = priceModel.getHouse4Rent();
+    infos['hotel']  = priceModel.getHotelRent();
+    infos['price']  = priceModel.getPrice();
+    infos['priceHouse'] = priceModel.getPriceHouse();
+    infos['priceHotel'] = priceModel.getPriceHotel();
+    if(field.getOwner() == null)
+    {
+      infos['owner'] = 'frei';
+    }
+    else
+    {
+      infos['owner'] = field.getOwner().getName();
+    }
+
+    socket.emit('receive fieldinfo', JSON.stringify(infos));
   });
 
   socket.on('throw dices', function (name, roomID)
@@ -274,7 +292,6 @@ io.sockets.on('connection', function (socket)
         }
         else if (currentBoard[currentField - 1].getType() == FELONY)
         {
-          console.log(myGame.getRooms()[roomID].getPlayers()[iter].getName() + " thrown in prison");
           socket.emit('throw in prison');
           myGame.getRooms()[roomID].getPlayers()[iter].setField(31);
           myGame.getRooms()[roomID].getPlayers()[iter].throwInPrison(3);
@@ -364,7 +381,7 @@ io.sockets.on('connection', function (socket)
     while (r.getCurrentPlayer().isInPrison() != 0)
     {
       var rounds = r.getCurrentPlayer().isInPrison();
-      console.log('player ' + r.getCurrentPlayerIndex() + ' in prison for ' + rounds - 1 + ' turns');
+      //console.log('player ' + r.getCurrentPlayerIndex() + ' in prison for ' + rounds - 1 + ' turns');
       r.getCurrentPlayer().throwInPrison(rounds - 1);
       r.nextPlayer();
     }

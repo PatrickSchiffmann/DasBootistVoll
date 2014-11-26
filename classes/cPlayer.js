@@ -139,7 +139,12 @@ function Player(name, playerNr)
   this.setField = function(field) {field_ = field;}
   this.setPlayerNr = function(playerNr) {playerNr_ = playerNr;}
   this.setReady = function(ready) {ready_ = ready;}
-  this.throwInPrison = function(turns) {in_prison_ = turns;}
+
+  this.throwInPrison = function(turns)
+  {
+    console.log(name_ + ' [' + playerNr_ + '] => ' + unique_id_ + ' thrown in prison (' + turns + ')');
+    in_prison_ = turns;
+  }
 
   this.setCharName = function(charName) {charName_ = charName;}
   this.setSex = function(sex) {sex_ = sex;}
