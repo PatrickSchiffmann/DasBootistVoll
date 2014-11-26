@@ -12,8 +12,8 @@
         </audio>
         <div id="options">
             <img id="optionsSettings" src="media/buttons/settings1.png" onclick="showOptions()" alt="Menü anzeigen" />
-            <img id="optionsSoundOn" src="media/buttons/sound_on.png" onclick="soundOn()" alt="Ton ein" />
-            <img id="optionsSoundOff" src="media/buttons/sound_off.png"  onclick="soundOff()" style="display:none;" alt="Ton aus"/>
+            <img id="optionsSoundOn" src="media/buttons/sound_off.png" onclick="soundOn()" alt="Ton ein" />
+            <img id="optionsSoundOff" src="media/buttons/sound_on.png"  onclick="soundOff()" style="display:none;" alt="Ton aus"/>
         </div>
         <div id="playerlist">
             <!-- to be filled dynamically -->
@@ -260,7 +260,7 @@
                         </div>
                     </div>
                     <div id="chatpanel4"> 
-                        <input type="text" id="chatinput" placeholder="Tippen zum Chatten. Absenden mit Enter." />
+                        <input type="text" id="chatinput" placeholder="Bitte einloggen, um zu chatten." pattern="[a-zA-Z0-9!§$%&/()=?+#-*_,.]+" disabled/>
                     </div>
                 </div>
             </div>

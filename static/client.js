@@ -27,8 +27,8 @@ function tab(tab_index)
 {
   if (curr_tab != tab_index)
   {
-    $('#reiterPlayer').toggleClass('active')
-    $('#reiterStreet').toggleClass('active')
+    $('#reiterPlayer').toggleClass('active');
+    $('#reiterStreet').toggleClass('active');
 
     if (tab_index == 1)
     {
@@ -81,6 +81,9 @@ function getRollString(int)
     case 6:
       return 'six';
       break;
+
+    default:
+      break;
   }
 }
 
@@ -93,8 +96,7 @@ function jobPopup(text)
     $("#popup-button-ok-img").attr("src", "media/button-job-ok.png");
     $("#popup-button-cancel-img").attr("src", "media/button-job-cancel.png");
     $("#popup").fadeIn("normal");
-    $("#hintergrund").css("opacity", "0.7");
-    $("#hintergrund").fadeIn("normal");
+    $("#hintergrund").css("opacity", "0.7").fadeIn("normal");
     popup_zustand = true;
   }
 }
@@ -110,8 +112,7 @@ function riskPopup(text)
     $("#popup-button-ok-img").attr("src", "media/button-risk-ok.png");
     $("#popup-button-cancel-img").attr("src", "media/button-risk-cancel.png");
     $("#popup").fadeIn("normal");
-    $("#hintergrund").css("opacity", "0.7");
-    $("#hintergrund").fadeIn("normal");
+    $("#hintergrund").css("opacity", "0.7").fadeIn("normal");
     popup_zustand = true;
   }
 }
@@ -146,7 +147,10 @@ jQuery(function ($)
     if (e.keyCode != 13) //wenn nicht Enter gedrückt wurde aus der funktion gehen
       return;
 
-    socket.emit('send message', $('#chatinput').val());
+    var message = $('#chatinput').val();
+    message = message.replace(';', '').replace('<', '').replace('>', '');
+
+    socket.emit('send message', message);
     $('#chatinput').val('');
   });
 
@@ -358,19 +362,19 @@ jQuery(function ($)
     //Fieldstatus als dritten Parameter hinzufügen, fehlt noch serverseitig
     if (fieldNr < 12)
     {
-      cssclass = "img-owner-top";
+      cssclass = 'img-owner-top';
     } else if (fieldNr < 21)
     {
-      cssclass = "img-owner-right";
+      cssclass = 'img-owner-right';
     } else if (fieldNr < 30)
     {
-      cssclass = "img-owner-right";
+      cssclass = 'img-owner-right';
     } else
     {
-      cssclass = "img-owner-left";
+      cssclass = 'img-owner-left';
     }
 
-    $("#fieldowner" + (fieldNr)).append('<img id="owner-' + (fieldNr) + '" src="media/houses/' + pNr + '-0.png" />');
+    $("#fieldowner" + (fieldNr)).append('<img id="owner-' + (fieldNr) + '" class="' + cssclass + '" src="media/houses/' + pNr + '-0.png" />');
   });
 
   socket.on('throw in prison', function ()
@@ -392,13 +396,17 @@ var socket = io.connect();
 function joinRoom(room)
 {
   getCharacters();
-  var name = prompt("Wie heißt du?");
+  var name = '';
+  while (name == '')
+  {
+    name = prompt("Wie heißt du?");
+  }
   socket.emit('join room', room, name);
   $('#room').text(room + 1);
   socket.emit('get name');
   $('#chooseRoom').toggleClass('hidden');
   $('#chooseCharacter').show();
-  //socket.emit('update playerlist');
+  $('#chatinput').attr('placeholder', 'Tippen zum Chatten. Absenden mit Enter.').prop('disabled', false);
 }
 
 function getCharacters()
