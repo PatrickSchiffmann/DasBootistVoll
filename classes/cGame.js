@@ -55,95 +55,114 @@ function Game()
   var priceModels_ = null;
   var startingBoard_ = null;
 
-  this.setCharacters = function(characters) {
+  this.setCharacters = function(characters)
+  {
     characters_ = characters;
   }
 
-  this.setPriceModels = function(models) {
+  this.setPriceModels = function(models)
+  {
     priceModels_ = models;
   }
 
-  this.setBoard = function(board) {
+  this.setBoard = function(board)
+  {
     startingBoard_ = board;
   }
 
-  this.getBoard = function() {
+  this.getBoard = function()
+  {
     return startingBoard_;
   }
 
-  this.getCharacters = function() {
+  this.getCharacters = function()
+  {
     return characters_;
   }
 
-  this.getPlayers = function() {
+  this.getPlayers = function()
+  {
     return allPlayers_;
   }
 
-  this.getRooms = function() {
+  this.getRooms = function()
+  {
     return rooms_;
   }
 
-  this.addPlayer = function(player, room) {
+  this.getRoomByID = function(id)
+  {
+    return rooms_[id];
+  }
+
+  this.addPlayer = function(player, room)
+  {
     allPlayers_.push(player);
     rooms_[room].addPlayer(player);
   }
 
-  this.removePlayer = function(player, roomID) {
+  this.removePlayer = function(player, roomID)
+  {
     var index = allPlayers_.indexOf(player);
-    if (index > -1) {
-        allPlayers_.splice(index, 1);
+    if(index > -1)
+    {
+      allPlayers_.splice(index, 1);
     }
     rooms_[roomID].removePlayer(player);
   }
 
-  this.printPlayers = function() {
-	console.log("\nAll players: ");
+  this.printPlayers = function()
+  {
+    console.log("\nAll players: ");
     for(var iter in allPlayers_)
       console.log("\t" + allPlayers_[iter].getName());
   }
 
-  this.printRooms = function() {
+  this.printRooms = function()
+  {
     console.log("\nAll rooms: ");
     for(var i = 0; i < rooms_.length; i++)
     {
       //console.log(rooms_[i].getPlayers().length);
       if(rooms_[i].getPlayers().length > 0)
       {
-        var j = i+1;
+        var j = i + 1;
         console.log("Room " + j + " :");
         for(var iter in rooms_[i].getPlayers())
         {
           var tmp = rooms_[i].getPlayers();
           console.log("\t" + tmp[iter].getName());
-        }          
+        }
       }
     }
   }
 
-  this.printCharacters = function() {
+  this.printCharacters = function()
+  {
     console.log("All characters: ");
     for(var i = 0; i < rooms_.length; i++)
     {
       if(rooms_[i].getPlayers().length > 0)
       {
-        var j = i+1;       
+        var j = i + 1;
         console.log("Room " + j + " :");
         for(var iter in rooms_[i].getPlayers())
         {
           var tmp = rooms_[i].getPlayers();
           console.log("\t" + tmp[iter].getName() + "[" + tmp[iter].getField() + "] is playing : " + tmp[iter].getCharacter().getName());
-        }          
+        }
       }
     }
   }
 
-  this.initialise = function() {
+  this.initialise = function()
+  {
     // create rooms
     for(var i = 0; i < 16; i++)
     {
       var tmp = new Room(i);
       tmp.setRiskCards(RISKCARDS);
-	    tmp.setJobCards(JOBCARDS);
+      tmp.setJobCards(JOBCARDS);
       tmp.setBoard(BOARD);
       rooms_.push(tmp);
     }
@@ -151,16 +170,16 @@ function Game()
     this.setCharacters(CHARS);
 
     /*for(var iter in characters_)
-      console.log(characters_[iter].getName());*/
+     console.log(characters_[iter].getName());*/
 
     console.log("Characters loaded: \t" + characters_.length);
 
     this.setPriceModels(PRICEMODELS);
     this.setBoard(BOARD);
 
-	console.log("Board initialised.\t" + startingBoard_.length)
+    console.log("Board initialised.\t" + startingBoard_.length)
     /*for(var iter in startingBoard_)
-        console.log(startingBoard_[iter].printInfo());*/
+     console.log(startingBoard_[iter].printInfo());*/
   }
 }
 

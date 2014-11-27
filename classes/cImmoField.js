@@ -21,36 +21,36 @@ const UNI = 5;
 const INDUSTRY = 6;
 const MANSIONS = 7;
 
-function fieldType(int) 
+function fieldType(int)
 {
   switch(int)
   {
-    case START:     
-      return "Start";       
+    case START:
+      return "Start";
       break;
 
-    case IMMO:      
-      return "Immobilie";   
+    case IMMO:
+      return "Immobilie";
       break;
 
-    case RISK:      
-      return "Risiko";      
+    case RISK:
+      return "Risiko";
       break;
 
-    case JOB:       
-      return "Job";         
+    case JOB:
+      return "Job";
       break;
 
-    case FELONY:    
-      return "Verbrechen";  
+    case FELONY:
+      return "Verbrechen";
       break;
 
-    case TRAINING:  
-      return "Fortbildung"; 
+    case TRAINING:
+      return "Fortbildung";
       break;
 
-    case JAIL:      
-      return "Gefängnis";   
+    case JAIL:
+      return "Gefängnis";
       break;
 
     default:
@@ -59,40 +59,40 @@ function fieldType(int)
   }
 }
 
-function ghettoName(int) 
+function ghettoName(int)
 {
   switch(int)
   {
-    case REDLIGHT:     
-      return "Rotlichtviertel";       
+    case REDLIGHT:
+      return "Rotlichtviertel";
       break;
 
-    case OLD_TOWN:      
-      return "Altstadt";   
+    case OLD_TOWN:
+      return "Altstadt";
       break;
 
-    case INNER_CITY:      
-      return "Innenstadt";      
+    case INNER_CITY:
+      return "Innenstadt";
       break;
 
-    case FIN_DISTRICT:       
-      return "Bankenviertel";         
+    case FIN_DISTRICT:
+      return "Bankenviertel";
       break;
 
-    case HOTSPOT:    
-      return "Szeneviertel";  
+    case HOTSPOT:
+      return "Szeneviertel";
       break;
 
-    case UNI:  
-      return "Univiertel"; 
+    case UNI:
+      return "Univiertel";
       break;
 
-    case INDUSTRY:      
-      return "Industrieviertel";   
+    case INDUSTRY:
+      return "Industrieviertel";
       break;
 
-    case MANSIONS:      
-      return "Villenviertel";   
+    case MANSIONS:
+      return "Villenviertel";
       break;
 
     default:
@@ -112,35 +112,43 @@ function ImmoField(type, name, ghetto, priceModel)
   // 5 houses equal 1 hotel
   var houses_ = 0;
 
-  this.getType = function() {
-      return type_;
+  this.getType = function()
+  {
+    return type_;
   }
 
-  this.getName = function() {
-      return name_;
+  this.getName = function()
+  {
+    return name_;
   }
 
-  this.getGhetto = function() {
-      return ghetto_;
+  this.getGhetto = function()
+  {
+    return ghetto_;
   }
 
-  this.getGhettoName = function() {
-      return ghettoName(ghetto_);
+  this.getGhettoName = function()
+  {
+    return ghettoName(ghetto_);
   }
 
-  this.getPriceModel = function() {
+  this.getPriceModel = function()
+  {
     return priceModel_;
   }
 
-  this.getOwner = function() {
+  this.getOwner = function()
+  {
     return owner_;
   }
 
-  this.printInfo = function() {
+  this.printInfo = function()
+  {
     return fieldType(type_) + "\t" + name_ + "\t\t" + ghettoName(ghetto_) + "\t" + priceModel_.getPrice() + ", " + currentRent_;
   }
 
-  this.calcRent = function(houses) {
+  this.calcRent = function(houses)
+  {
     switch(houses)
     {
       case 1:
@@ -161,17 +169,25 @@ function ImmoField(type, name, ghetto, priceModel)
     }
   }
 
-  this.setOwner = function(owner) {
+  this.setOwner = function(owner)
+  {
     owner_ = owner;
   }
 
-  this.buyHouse = function() {
-    this.houses_ += 1;
-    this.currentRent_ = this.calcRent(this.houses_);
+  this.buyHouse = function()
+  {
+    houses_ += 1;
+    currentRent_ = this.calcRent(this.houses_);
   }
 
-  this.getRent = function() {
+  this.getRent = function()
+  {
     return currentRent_;
+  }
+
+  this.getHouses = function()
+  {
+    return houses_;
   }
 }
 

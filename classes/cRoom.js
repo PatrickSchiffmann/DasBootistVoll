@@ -2,7 +2,8 @@
 //********************************* R O O M ***********************************
 //*****************************************************************************
 
-function Room(id) {
+function Room(id)
+{
   var id_ = id;
   var playing_ = [];
   var riskCards_ = null;
@@ -14,39 +15,45 @@ function Room(id) {
   var board_ = null;
   var activePlayer_ = [];
 
-  this.addPlayer = function(player) {
+  this.addPlayer = function(player)
+  {
     playing_.push(player);
   }
 
-  this.removePlayer = function(player) {
+  this.removePlayer = function(player)
+  {
     nrPlayers_ = nrPlayers_ - 1;
     console.log("after removal : " + nrPlayers_ + ' players');
-    colors_[player.getPlayerNr()-1] = null;
+    colors_[player.getPlayerNr() - 1] = null;
     var index = playing_.indexOf(player);
-    if (index > -1) {
-        playing_.splice(index, 1);
+    if(index > -1)
+    {
+      playing_.splice(index, 1);
     }
   }
 
-  this.generatePlayerNr = function() {
+  this.generatePlayerNr = function()
+  {
     for(var i = 0; colors_.length; i++)
     {
       if(colors_[i] === null)
       {
         colors_[i] = 'X';
-        return i+1;
+        return i + 1;
       }
     }
   }
 
-  this.isReady = function() {
+  this.isReady = function()
+  {
     if(nrPlayers_ > 1)
       return true;
     else
       return false;
   }
 
-  this.findPlayerByName = function(name) {
+  this.findPlayerByName = function(name)
+  {
     for(var iter in playing_)
     {
       if(playing_[iter].getName() === name)
@@ -56,70 +63,97 @@ function Room(id) {
     }
   }
 
-  this.nextPlayer = function() {
+  this.findPlayerByUID = function(uid)
+  {
+    for(var iter in playing_)
+    {
+      if(playing_[iter].getUniqueID() === uid)
+      {
+        return playing_[iter];
+      }
+    }
+  }
+
+  this.nextPlayer = function()
+  {
     currentPlayerIndex_ = currentPlayerIndex_ + 1;
-    if(currentPlayerIndex_ > nrPlayers_)
+    if(currentPlayerIndex_ > playing_.length)
       currentPlayerIndex_ = 1;
   }
 
-  this.setRiskCards = function(cards) {
+  this.setRiskCards = function(cards)
+  {
     riskCards_ = cards;
   }
 
-  this.setJobCards = function(cards) {
+  this.setJobCards = function(cards)
+  {
     jobCards_ = cards;
   }
 
-  this.setNrPlayers = function(nr) {
+  this.setNrPlayers = function(nr)
+  {
     nrPlayers_ = nr;
   }
 
-  this.setClosed = function(bool) {
+  this.setClosed = function(bool)
+  {
     closed_ = bool;
   }
 
-  this.setBoard = function(board) {
+  this.setBoard = function(board)
+  {
     board_ = board;
   }
 
-  this.setCurrentPlayerIndex = function(index) {
+  this.setCurrentPlayerIndex = function(index)
+  {
     currentPlayerIndex_ = index;
   }
 
-  this.getID = function() {
+  this.getID = function()
+  {
     return id_;
   }
 
-  this.getPlayers = function() {
+  this.getPlayers = function()
+  {
     return playing_;
   }
 
-  this.getRiskCards = function() {
+  this.getRiskCards = function()
+  {
     return riskCards_;
   }
 
-  this.getJobCards = function() {
+  this.getJobCards = function()
+  {
     return jobCards_;
   }
 
-  this.getNrPlayers = function() {
-    return nrPlayers_;
+  this.getNrPlayers = function()
+  {
+    return playing_.length;
   }
 
-  this.getBoard = function() {
+  this.getBoard = function()
+  {
     return board_;
   }
 
-  this.isClosed = function() {
+  this.isClosed = function()
+  {
     return closed_;
   }
 
-  this.getCurrentPlayerIndex = function() {
+  this.getCurrentPlayerIndex = function()
+  {
     return currentPlayerIndex_;
   }
 
-  this.getCurrentPlayer = function() {
-    return playing_[currentPlayerIndex_-1];
+  this.getCurrentPlayer = function()
+  {
+    return playing_[currentPlayerIndex_ - 1];
   }
 }
 

@@ -11,42 +11,50 @@
   <source src="media/sounds/background.mp3" type="audio/mpeg">
 </audio>
 <div id="options">
-  <img id="optionsSettings" src="media/buttons/settings1.png" onclick="showOptions()" alt="Menü anzeigen" />
-  <img id="optionsSoundOn" src="media/buttons/sound_off.png" onclick="soundOn()" alt="Ton ein" />
-  <img id="optionsSoundOff" src="media/buttons/sound_on.png"  onclick="soundOff()" style="display:none;" alt="Ton aus"/>
+  <img id="optionsSettings" src="media/buttons/settings1.png" onclick="showOptions()" alt="Menü anzeigen"/>
+  <img id="optionsSoundOn" src="media/buttons/sound_off.png" onclick="soundOn()" alt="Ton ein"/>
+  <img id="optionsSoundOff" src="media/buttons/sound_on.png" onclick="soundOff()" style="display:none;" alt="Ton aus"/>
 </div>
 <div id="playerlist">
   <!-- to be filled dynamically -->
   <div class="listedPlayer listedPlayer1">
     <img class="playerlistPic" id="charPic1"/>
+
     <div class="playerListName1"></div>
   </div>
   <div class="listedPlayer listedPlayer2">
     <img class="playerlistPic" id="charPic2"/>
+
     <div class="playerListName2"></div>
   </div>
   <div class="listedPlayer listedPlayer3">
     <img class="playerlistPic" id="charPic3"/>
+
     <div class="playerListName3"></div>
   </div>
   <div class="listedPlayer listedPlayer4">
     <img class="playerlistPic" id="charPic4"/>
+
     <div class="playerListName4"></div>
   </div>
   <div class="listedPlayer listedPlayer5">
     <img class="playerlistPic" id="charPic5"/>
+
     <div class="playerListName5"></div>
   </div>
   <div class="listedPlayer listedPlayer6">
     <img class="playerlistPic" id="charPic6"/>
+
     <div class="playerListName6"></div>
   </div>
   <div class="listedPlayer listedPlayer7">
     <img class="playerlistPic" id="charPic7"/>
+
     <div class="playerListName7"></div>
   </div>
   <div class="listedPlayer listedPlayer8">
     <img class="playerlistPic" id="charPic8"/>
+
     <div class="playerListName8"></div>
   </div>
 </div>
@@ -69,29 +77,42 @@
   <table>
     <tr>
       <td class="START square" id="field1"></td>
-      <td class="IMMOred high" onClick="getFieldInfo(2)" id="field2"><div id="fieldowner2" class="field-owner-top"></div></td>
+      <td class="IMMOred high" onClick="getFieldInfo(2)" id="field2">
+        <div id="fieldowner2" class="field-owner-top"></div>
+      </td>
       <td class="RISK high" id="field3"></td>
       <td class="JOB high" id="field4"></td>
-      <td class="IMMOold high" onClick="getFieldInfo(5)" id="field5"><div id="fieldowner5" class="field-owner-top"></div></td>
-      <td class="IMMOold high" onClick="getFieldInfo(6)" id="field6"><div id="fieldowner6" class="field-owner-top"></div></td>
-      <td class="IMMOold high" onClick="getFieldInfo(7)" id="field7"><div id="fieldowner7" class="field-owner-top"></div></td>
+      <td class="IMMOold high" onClick="getFieldInfo(5)" id="field5">
+        <div id="fieldowner5" class="field-owner-top"></div>
+      </td>
+      <td class="IMMOold high" onClick="getFieldInfo(6)" id="field6">
+        <div id="fieldowner6" class="field-owner-top"></div>
+      </td>
+      <td class="IMMOold high" onClick="getFieldInfo(7)" id="field7">
+        <div id="fieldowner7" class="field-owner-top"></div>
+      </td>
       <td class="RISK high" id="field8"></td>
       <td class="JOB high" id="field9"></td>
-      <td class="IMMOcity high" onClick="getFieldInfo(10)" id="field10"><div id="fieldowner10" class="field-owner-top"></div></td>
+      <td class="IMMOcity high" onClick="getFieldInfo(10)" id="field10">
+        <div id="fieldowner10" class="field-owner-top"></div>
+      </td>
       <td class="FELONY square" id="field11"></td>
     </tr>
     <tr>
-      <td class="IMMOred wide" onClick="getFieldInfo(40)" id="field40"><div id="fieldowner40" class="field-owner-left"></div></td>
+      <td class="IMMOred wide" onClick="getFieldInfo(40)" id="field40">
+        <div id="fieldowner40" class="field-owner-left"></div>
+      </td>
       <td class="noPointer" rowspan="9" colspan="9">
         <div id="info">
           <div id="chooseRoom">
             <span class="headline">Spielraum auswählen:</span>
+
             <div id="leftRooms">
               <script>
                 document.write('<ul class="roomList">');
                 for(var i = 0; i < 1; i++)
                 {
-                  var j = i+1;
+                  var j = i + 1;
                   document.write('<li onclick="joinRoom(' + i + ')">Raum ' + j + '</li>');
                 }
                 document.write('</ul>');
@@ -102,7 +123,7 @@
                 document.write('<ul class="roomList">');
                 for(var i = 8; i < 8; i++)
                 {
-                  var j = i+1;
+                  var j = i + 1;
                   document.write('<li onclick="joinRoom(' + i + ')">Raum ' + j + '</li>');
                 }
                 document.write('</ul>');
@@ -111,15 +132,20 @@
           </div>
           <div id="chooseCharacter" style="display: none;">
             <span class="headline">Charakter auswählen:</span>
+
             <div id="chooseCharacterLeft"></div>
             <div id="chooseCharacterRight"></div>
           </div>
         </div>
       </td>
-      <td class="IMMOcity wide" onClick="getFieldInfo(12)" id="field12"><div id="fieldowner12" class="field-owner-right"></div></td>
+      <td class="IMMOcity wide" onClick="getFieldInfo(12)" id="field12">
+        <div id="fieldowner12" class="field-owner-right"></div>
+      </td>
     </tr>
     <tr>
-      <td class="IMMOred wide" onClick="getFieldInfo(39)" id="field39"><div id="fieldowner39" class="field-owner-left"></div></td>
+      <td class="IMMOred wide" onClick="getFieldInfo(39)" id="field39">
+        <div id="fieldowner39" class="field-owner-left"></div>
+      </td>
       <td class="RISK wide" id="field13"></td>
     </tr>
     <tr>
@@ -127,16 +153,28 @@
       <td class="JOB wide" id="field14"></td>
     </tr>
     <tr>
-      <td class="IMMOrich wide" onClick="getFieldInfo(37)" id="field37"><div id="fieldowner37" class="field-owner-left"></div></td>
-      <td class="IMMObank wide" onClick="getFieldInfo(15)" id="field15"><div id="fieldowner15" class="field-owner-right"></div></td>
+      <td class="IMMOrich wide" onClick="getFieldInfo(37)" id="field37">
+        <div id="fieldowner37" class="field-owner-left"></div>
+      </td>
+      <td class="IMMObank wide" onClick="getFieldInfo(15)" id="field15">
+        <div id="fieldowner15" class="field-owner-right"></div>
+      </td>
     </tr>
     <tr>
-      <td class="IMMOrich wide" onClick="getFieldInfo(36)" id="field36"><div id="fieldowner36" class="field-owner-left"></div></td>
-      <td class="IMMObank wide" onClick="getFieldInfo(16)" id="field16"><div id="fieldowner16" class="field-owner-right"></div></td>
+      <td class="IMMOrich wide" onClick="getFieldInfo(36)" id="field36">
+        <div id="fieldowner36" class="field-owner-left"></div>
+      </td>
+      <td class="IMMObank wide" onClick="getFieldInfo(16)" id="field16">
+        <div id="fieldowner16" class="field-owner-right"></div>
+      </td>
     </tr>
     <tr>
-      <td class="IMMOrich wide" onClick="getFieldInfo(35)" id="field35"><div id="fieldowner35" class="field-owner-left"></div></td>
-      <td class="IMMObank wide" onClick="getFieldInfo(17)" id="field17"><div id="fieldowner17" class="field-owner-right"></div></td>
+      <td class="IMMOrich wide" onClick="getFieldInfo(35)" id="field35">
+        <div id="fieldowner35" class="field-owner-left"></div>
+      </td>
+      <td class="IMMObank wide" onClick="getFieldInfo(17)" id="field17">
+        <div id="fieldowner17" class="field-owner-right"></div>
+      </td>
     </tr>
     <tr>
       <td class="RISK wide" id="field34"></td>
@@ -147,27 +185,41 @@
       <td class="JOB wide" id="field19"></td>
     </tr>
     <tr>
-      <td class="IMMOind wide" onClick="getFieldInfo(32)" id="field32"><div id="fieldowner32" class="field-owner-left"></div></td>
-      <td class="IMMOhot wide" onClick="getFieldInfo(20)" id="field20"><div id="fieldowner20" class="field-owner-right"></div></td>
+      <td class="IMMOind wide" onClick="getFieldInfo(32)" id="field32">
+        <div id="fieldowner32" class="field-owner-left"></div>
+      </td>
+      <td class="IMMOhot wide" onClick="getFieldInfo(20)" id="field20">
+        <div id="fieldowner20" class="field-owner-right"></div>
+      </td>
     </tr>
     <tr>
       <td class="JAIL square" id="field31"></td>
-      <td class="IMMOind high" onClick="getFieldInfo(30)" id="field30"><div id="fieldowner30" class="field-owner-bottom"></div></td>
+      <td class="IMMOind high" onClick="getFieldInfo(30)" id="field30">
+        <div id="fieldowner30" class="field-owner-bottom"></div>
+      </td>
       <td class="RISK high" id="field29"></td>
       <td class="JOB high" id="field28"></td>
-      <td class="IMMOind high" onClick="getFieldInfo(27)" id="field27"><div id="fieldowner27" class="field-owner-bottom"></div></td>
-      <td class="IMMOuni high" onClick="getFieldInfo(26)" id="field26"><div id="fieldowner26" class="field-owner-bottom"></div></td>
-      <td class="IMMOuni high" onClick="getFieldInfo(25)" id="field25"><div id="fieldowner25" class="field-owner-bottom"></div></td>
+      <td class="IMMOind high" onClick="getFieldInfo(27)" id="field27">
+        <div id="fieldowner27" class="field-owner-bottom"></div>
+      </td>
+      <td class="IMMOuni high" onClick="getFieldInfo(26)" id="field26">
+        <div id="fieldowner26" class="field-owner-bottom"></div>
+      </td>
+      <td class="IMMOuni high" onClick="getFieldInfo(25)" id="field25">
+        <div id="fieldowner25" class="field-owner-bottom"></div>
+      </td>
       <td class="RISK high" id="field24"></td>
       <td class="JOB high" id="field23"></td>
-      <td class="IMMOhot high" onClick="getFieldInfo(22)" id="field22"><div id="fieldowner22" class="field-owner-bottom"></div></td>
+      <td class="IMMOhot high" onClick="getFieldInfo(22)" id="field22">
+        <div id="fieldowner22" class="field-owner-bottom"></div>
+      </td>
       <td class="TRAINING square" id="field21"></td>
     </tr>
   </table>
 </div>
 <div id="panelwrapper">
-  <div class="paneltab active" id="reiterPlayer" onclick="tab(1)"> Spieler </div>
-  <div class="paneltab" id="reiterStreet" onclick="tab(2)"> Straße </div>
+  <div class="paneltab active" id="reiterPlayer" onclick="tab(1)"> Spieler</div>
+  <div class="paneltab" id="reiterStreet" onclick="tab(2)"> Straße</div>
   <div class="ghostpanel"></div>
   <div id="infopanel">
     <div id="infopanel2">
@@ -178,10 +230,15 @@
           </div>
           <div id="playerInfo" class="panel">
             <p><span id="playernumber"></span> Spieler im Raum #<span id="room"></span></p>
+
             <p><span id="name">Name</span></p>
+
             <p>&nbsp;&nbsp;Charakter: <span id="characterName"></span></p>
+
             <p>&nbsp;&nbsp;Statuspunkte: <span id="statuspkts"></span></p>
+
             <p>&nbsp;&nbsp;Einkommen: <span id="income"></span> €</p>
+
             <p>&nbsp;&nbsp;Geldbörse: <span id="moneysack"></span> €</p>
           </div>
         </div>
@@ -189,46 +246,48 @@
           <div id="fieldInfo">
             <table class="center">
               <tr>
-                <th colspan="3" ><span id="fieldNr">1</span>) <span id="fieldName">Bahnhofstraße</span> (<span id="fieldViertel">Rotlichtviertel</span>)</th>
+                <th colspan="3"><span id="fieldNr">1</span>) <span id="fieldName">Bahnhofstraße</span> (<span
+                  id="fieldViertel">Rotlichtviertel</span>)
+                </th>
               </tr>
               <tr>
-                <td>Miete: </td>
+                <td>Miete:</td>
                 <td><span id="fieldRent">20</span>€</td>
               </tr>
               <tr>
-                <td>Miete mit 1 Haus: </td>
+                <td>Miete mit 1 Haus:</td>
                 <td><span id="field1House">100</span>€</td>
               </tr>
               <tr>
-                <td>Miete mit 2 Häusern: </td>
+                <td>Miete mit 2 Häusern:</td>
                 <td><span id="field2House">300</span>€</td>
               </tr>
               <tr>
-                <td>Miete mit 3 Häusern: </td>
+                <td>Miete mit 3 Häusern:</td>
                 <td><span id="field3House">600</span>€</td>
               </tr>
               <tr>
-                <td>Miete mit 4 Häusern: </td>
+                <td>Miete mit 4 Häusern:</td>
                 <td><span id="field4House">750</span>€</td>
               </tr>
               <tr>
-                <td>Miete mit 1 Hotel: </td>
+                <td>Miete mit 1 Hotel:</td>
                 <td><span id="fieldHotel">950</span>€</td>
               </tr>
               <tr>
-                <td>Preis des Grundstücks: </td>
+                <td>Preis des Grundstücks:</td>
                 <td><span id="fieldPrice">220</span>€</td>
               </tr>
               <tr>
-                <td>Preis des Hauses: </td>
+                <td>Preis des Hauses:</td>
                 <td><span id="fieldHousePrice">160</span>€</td>
               </tr>
               <tr>
-                <td>Preis des Hotels: </td>
+                <td>Preis des Hotels:</td>
                 <td><span id="fieldHotelPrice">160</span>€</td>
               </tr>
               <tr>
-                <td>Besitzer: </td>
+                <td>Besitzer:</td>
                 <td><span id="fieldOwner">frei</span></td>
               </tr>
             </table>
@@ -248,7 +307,7 @@
     <div id="ready" class="hidden">
       <div id="isReadyButton">
         <p><span id="countdown">15</span></p>
-        <input type="button" id="readyButton" value="Los geht's!" onClick="isReady()" />
+        <input type="button" id="readyButton" value="Los geht's!" onClick="isReady()"/>
       </div>
     </div>
   </div>
@@ -260,7 +319,8 @@
         </div>
       </div>
       <div id="chatpanel4">
-        <input type="text" id="chatinput" placeholder="Bitte einloggen, um zu chatten." pattern="[a-zA-Z0-9!§$%&/()=?+#-*_,.]+" disabled/>
+        <input type="text" id="chatinput" placeholder="Bitte einloggen, um zu chatten."
+               pattern="[a-zA-Z0-9!§$%&/()=?+#-*_,.]+" disabled/>
       </div>
     </div>
   </div>

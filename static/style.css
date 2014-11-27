@@ -39,7 +39,7 @@ div#options img {
 }
 
 #boardwrap td {
-	position: relative;
+  position: relative;
 }
 
 .noPointer {
@@ -243,57 +243,57 @@ div#options img {
 
 .die.two:after {
   background: transparent;
-  box-shadow: -2.3em -2.3em 0 #345, 
-  2.3em  2.3em 0 #345, 
-  -2.3em -2.3em 0 #FFF, 
-  2.3em  2.4em 0 #FFF;
+  box-shadow: -2.3em -2.3em 0 #345,
+  2.3em 2.3em 0 #345,
+  -2.3em -2.3em 0 #FFF,
+  2.3em 2.4em 0 #FFF;
 }
 
 .die.three:after {
-  box-shadow: -2.3em -2.3em 0 #345, 
-  2.3em  2.3em 0 #345, 
-  -2.3em -2.3em 0 #FFF, 
-  2.3em  2.4em 0 #FFF, 
-  0   .2em 0 #FFF;
+  box-shadow: -2.3em -2.3em 0 #345,
+  2.3em 2.3em 0 #345,
+  -2.3em -2.3em 0 #FFF,
+  2.3em 2.4em 0 #FFF,
+  0 .2em 0 #FFF;
 }
 
 .die.four:after {
   background: transparent;
-  box-shadow: -2.3em -2.3em 0 #345, 
-  2.3em  2.3em 0 #345, 
-  -2.3em  2.3em 0 #345, 
-  2.3em -2.3em 0 #345, 
-  -2.3em -2.3em 0 #FFF, 
-  2.3em  2.4em 0 #FFF, 
-  -2.3em  2.4em 0 #FFF, 
+  box-shadow: -2.3em -2.3em 0 #345,
+  2.3em 2.3em 0 #345,
+  -2.3em 2.3em 0 #345,
+  2.3em -2.3em 0 #345,
+  -2.3em -2.3em 0 #FFF,
+  2.3em 2.4em 0 #FFF,
+  -2.3em 2.4em 0 #FFF,
   2.3em -2.3em 0 #FFF;
 }
 
 .die.five:after {
-  box-shadow: -2.3em -2.3em 0 #345, 
-  2.3em  2.3em 0 #345, 
-  -2.3em  2.3em 0 #345, 
-  2.3em -2.3em 0 #345, 
-  -2.3em -2.2em 0 #FFF, 
-  2.3em -2.2em 0 #FFF, 
-  2.3em  2.4em 0 #FFF, 
-  -2.3em  2.4em 0 #FFF,
-  0   .2em 0 #FFF;
+  box-shadow: -2.3em -2.3em 0 #345,
+  2.3em 2.3em 0 #345,
+  -2.3em 2.3em 0 #345,
+  2.3em -2.3em 0 #345,
+  -2.3em -2.2em 0 #FFF,
+  2.3em -2.2em 0 #FFF,
+  2.3em 2.4em 0 #FFF,
+  -2.3em 2.4em 0 #FFF,
+  0 .2em 0 #FFF;
 }
 
 .die.six:after {
   background: transparent;
   box-shadow: -2.3em -2.3em 0 #345,
-  -2.3em      0 0 #345,
-  -2.3em  2.3em 0 #345,
+  -2.3em 0 0 #345,
+  -2.3em 2.3em 0 #345,
   2.3em -2.3em 0 #345,
-  2.3em      0 0 #345,
-  2.3em  2.3em 0 #345,
+  2.3em 0 0 #345,
+  2.3em 2.3em 0 #345,
   -2.3em -2.1em 0 #FFF,
-  -2.3em   .2em 0 #FFF,
-  -2.3em  2.4em 0 #FFF,
-  2.3em  2.4em 0 #FFF,
-  2.3em   .2em 0 #FFF,
+  -2.3em .2em 0 #FFF,
+  -2.3em 2.4em 0 #FFF,
+  2.3em 2.4em 0 #FFF,
+  2.3em .2em 0 #FFF,
   2.3em -2.1em 0 #FFF;
 }
 
@@ -339,7 +339,7 @@ div#options img {
 }
 
 #minus-logo {
-  height: 100% - 82px;
+  height: 100% -82px;
 }
 
 #tabPlayer {
@@ -551,7 +551,7 @@ span {
   margin-right: 9px;
 }
 
-.playerlistPicGray  {
+.playerlistPicGray {
   -webkit-filter: grayscale(1);
   filter: grayscale(1);
 }
@@ -908,7 +908,6 @@ td.noPointer:hover {
   text-align: center;
 }
 
-
 /********************************************************
 ******************** POPUP ******************************
 ********************************************************/
@@ -987,44 +986,47 @@ div.schliessen {
 
 /* Field Owner images*/
 .field-owner-top {
-	position:absolute;
-	top:0;
+  position: absolute;
+  top: 0;
 }
+
 .field-owner-right {
-	position:absolute;
-	right:0;
+  position: absolute;
+  right: 0;
 }
+
 .field-owner-left {
-	position:absolute;
-	left:0;
-	z-index:10;
-	
+  position: absolute;
+  left: 0;
+  z-index: 10;
+
 }
+
 .field-owner-bottom {
-	position:absolute;
-	bottom:0;
+  position: absolute;
+  bottom: 0;
 }
 
-.field-owner-right img{
-	-moz-transform:rotate(90deg); /* Firefox 3.6 Firefox 4 */
-	-webkit-transform:rotate(90deg); /* Safari */
-	-o-transform:rotate(90deg); /* Opera */
-	-ms-transform:rotate(90deg); /* IE9 */
-	transform:rotate(90deg); /* W3C */
+.field-owner-right img {
+  -moz-transform: rotate(90deg); /* Firefox 3.6 Firefox 4 */
+  -webkit-transform: rotate(90deg); /* Safari */
+  -o-transform: rotate(90deg); /* Opera */
+  -ms-transform: rotate(90deg); /* IE9 */
+  transform: rotate(90deg); /* W3C */
 }
 
-.field-owner-left img{
-	-moz-transform:rotate(270deg); /* Firefox 3.6 Firefox 4 */
-	-webkit-transform:rotate(270deg); /* Safari */
-	-o-transform:rotate(270deg); /* Opera */
-	-ms-transform:rotate(270deg); /* IE9 */
-	transform:rotate(270deg); /* W3C */
+.field-owner-left img {
+  -moz-transform: rotate(270deg); /* Firefox 3.6 Firefox 4 */
+  -webkit-transform: rotate(270deg); /* Safari */
+  -o-transform: rotate(270deg); /* Opera */
+  -ms-transform: rotate(270deg); /* IE9 */
+  transform: rotate(270deg); /* W3C */
 }
 
-.field-owner-bottom img{
-	-moz-transform:rotate(180deg); /* Firefox 3.6 Firefox 4 */
-	-webkit-transform:rotate(180deg); /* Safari */
-	-o-transform:rotate(180deg); /* Opera */
-	-ms-transform:rotate(180deg); /* IE9 */
-	transform:rotate(180deg); /* W3C */
+.field-owner-bottom img {
+  -moz-transform: rotate(180deg); /* Firefox 3.6 Firefox 4 */
+  -webkit-transform: rotate(180deg); /* Safari */
+  -o-transform: rotate(180deg); /* Opera */
+  -ms-transform: rotate(180deg); /* IE9 */
+  transform: rotate(180deg); /* W3C */
 }

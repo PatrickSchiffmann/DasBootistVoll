@@ -110,7 +110,7 @@ function Player(name, playerNr)
   this.getMajority = function() {return majority_;}
   this.getBaseStatus = function() {return base_status_;}
   this.getAge = function() {return age_;}
-  
+
   this.getEducationLevel = function() {return education_level_;}
   this.getLanguage = function() {return language_;}
   this.getHrTrainer = function() {return hr_trainer_;}
@@ -151,7 +151,7 @@ function Player(name, playerNr)
   this.setMajority = function(majority) {majority_ = majority;}
   this.setBaseStatus = function(status) {base_status_ = status;}
   this.setAge = function(age) {age_ = age;}
-  
+
   this.setEducationLevel = function(education_level) {education_level_ = education_level;}
   this.setLanguage = function(language) {language_ = language;}
   this.setHrTrainer = function(hr_trainer) {hr_trainer_ = hr_trainer;}
@@ -173,15 +173,15 @@ function Player(name, playerNr)
   this.setStatusChange = function(status_change) {status_change_ = status_change;}
 
   this.addSalaryChangeAbsolute = function(duration, value)
-  {    
+  {
   }
 
   this.addSalaryChangeRelative = function(duration, value)
-  {    
+  {
   }
- 
+
   //Eigene Funktionen
-  this.makeMove = function(diceResult) 
+  this.makeMove = function(diceResult)
   {
     field_ += diceResult;
     if(field_ > 40)
@@ -194,8 +194,8 @@ function Player(name, playerNr)
   this.getStatus = function()
   {
     var status = base_status_;
-    
-    if( (licence_ == 1) && (car_ == 2))
+
+    if((licence_ == 1) && (car_ == 2))
       status += 1;
 
     if(licence_ == 1)
@@ -238,7 +238,7 @@ function Player(name, playerNr)
       {
         var salary_table = SALARY_EU_2;
       }
-      else if (nostrification_ == 1 && education_level_ == 1)
+      else if(nostrification_ == 1 && education_level_ == 1)
       {
         var salary_table = SALARY_EU_1;
       }
@@ -254,10 +254,10 @@ function Player(name, playerNr)
 
     var salaries = salary_table[0];
     var steps = salary_table[1 + this.getMinority() + 2 * sex_];
-   
-    var i=0;
 
-    while( (i<5) && (base_status_ > steps[i]) )
+    var i = 0;
+
+    while((i < 5) && (base_status_ > steps[i]))
       i++;
 
     return salaries[i];
@@ -280,7 +280,7 @@ function Player(name, playerNr)
 
     salary = salary * factor;
 
-     for(var iter in salary_change_absolute_)
+    for(var iter in salary_change_absolute_)
     {
       if(salary_change_absolute_[iter][0] > 0)
       {
@@ -294,7 +294,8 @@ function Player(name, playerNr)
     return salary;
   }
 
-  this.print = function() {
+  this.print = function()
+  {
     console.log('     Playerinfo: ' + name_ + ' (' + money_ + ')');
     console.log('Bildung: ' + education_level_ + ' Sprachen: ' + language_);
     console.log('Führerschein: ' + licence_ + ' MR-Traienr ' + hr_trainer_);
