@@ -74,6 +74,17 @@ function Room(id)
     }
   }
 
+  this.findPlayerByPlayerNr = function(pNr)
+  {
+    for(var iter in playing_)
+    {
+      if(playing_[iter].getPlayerNr() === pNr)
+      {
+        return playing_[iter];
+      }
+    }
+  }
+
   this.nextPlayer = function()
   {
     currentPlayerIndex_ = currentPlayerIndex_ + 1;

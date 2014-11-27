@@ -551,6 +551,11 @@ span {
   margin-right: 9px;
 }
 
+.playerlistPic:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
 .playerlistPicGray {
   -webkit-filter: grayscale(1);
   filter: grayscale(1);

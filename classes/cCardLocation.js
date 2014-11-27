@@ -43,7 +43,7 @@ function CardLocation(id, number, name, location)
 		console.log('-------------------');
 		console.log('apply CardLocation:');
     console.log('set playerfield_ to ' + this.getField());
-    player.setField(this.getField());
+    player.setField(31);
     player.throwInPrison(2);
 		console.log('-------------------');
 	};

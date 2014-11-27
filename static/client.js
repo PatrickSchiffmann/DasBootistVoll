@@ -1,6 +1,7 @@
 var characters = null;
 var popup_zustand = false;
 var uniqueId = null;
+var pNr = null;
 
 function soundOn()
 {
@@ -27,20 +28,35 @@ function tab(tab_index)
 {
   if(curr_tab != tab_index)
   {
-    $('#reiterPlayer').toggleClass('active');
-    $('#reiterStreet').toggleClass('active');
+    $('#reiterPlayer').removeClass('active');
+    $('#reiterStreet').removeClass('active');
+    $('#reiterStatus').removeClass('active');
 
     if(tab_index == 1)
     {
       $('#tabPlayer').show();
       $('#tabStreet').hide();
+      $('#tabStatus').hide();
+      $('#reiterPlayer').toggleClass('active');
       curr_tab = 1;
-    } else if(tab_index == 2)
+    }
+    else if(tab_index == 2)
     {
       $('#tabPlayer').hide();
       $('#tabStreet').show();
+      $('#tabStatus').hide();
+      $('#reiterStreet').toggleClass('active');
       curr_tab = 2;
-    } else
+    }
+    else if(tab_index == 3)
+    {
+      $('#tabPlayer').hide();
+      $('#tabStreet').hide();
+      $('#tabStatus').show();
+      $('#reiterStatus').toggleClass('active');
+      curr_tab = 3;
+    }
+    else
       console.log('Failure calling tab()');
   }
 }
@@ -94,7 +110,7 @@ function jobPopup(text)
     $("#popup").css("background", "url('media/job.png')");
     $("#popup-text").text(text);
     $("#popup-button-ok-img").attr("src", "media/button-job-ok.png");
-    $("#popup-button-cancel-img").attr("src", "media/button-job-cancel.png");
+    //$("#popup-button-cancel-img").attr("src", "media/button-job-cancel.png");
     $("#popup").fadeIn("normal");
     $("#hintergrund").css("opacity", "0.7").fadeIn("normal");
     popup_zustand = true;
@@ -110,7 +126,7 @@ function riskPopup(text)
     $("#popup-buttons").css("margin-left", "64px");
     $("#popup-text").text(text);
     $("#popup-button-ok-img").attr("src", "media/button-risk-ok.png");
-    $("#popup-button-cancel-img").attr("src", "media/button-risk-cancel.png");
+    //$("#popup-button-cancel-img").attr("src", "media/button-risk-cancel.png");
     $("#popup").fadeIn("normal");
     $("#hintergrund").css("opacity", "0.7").fadeIn("normal");
     popup_zustand = true;
@@ -161,6 +177,19 @@ jQuery(function($)
   socket.on('receive playerinfo', function(data)
   {
     var info = jQuery.parseJSON(data);
+    $('#characterPic').html('<img id="avatar-self" src="./media/characters/' + info['charID'] + '.jpg" alt="Foreign Avatar"/>');
+    $('#name').text(info['name']);
+    $('#characterName').text(info['charName']);
+    $('#statuspkts').text(info['status']);
+    $('#income').text(info['income']);
+    $('#moneysack').text(info['moneysack']);
+  });
+
+  socket.on('receive foreign playerinfo', function(data)
+  {
+    var info = jQuery.parseJSON(data);
+    $('#characterPic').html('<img id="avatar-self" src="./media/characters/' + info['charID'] + '.jpg" alt="Foreign Avatar"/>');
+    $('#name').text(info['name']);
     $('#characterName').text(info['charName']);
     $('#statuspkts').text(info['status']);
     $('#income').text(info['income']);
@@ -186,7 +215,6 @@ jQuery(function($)
 
   socket.on('show figures', function(playerNr, currentField)
   {
-
     $("#figure-" + (playerNr + 1)).remove();
     $("#field" + currentField).append('<img id="figure-' + (playerNr + 1) + '" src="media/player/p' + (playerNr + 1) + '.png" />');
   });
@@ -291,6 +319,8 @@ jQuery(function($)
     if(uniqueId == uid)
     {
       $('#button-dices').prop('disabled', false).focus();
+      // TODO: your-turn-popup
+      alert('Du bist dran!');
     }
     else
     {
@@ -317,7 +347,8 @@ jQuery(function($)
     {
       console.log('Feld gekauft.');
       socket.emit('buy field!', uniqueId, getRoomNumber(), currentField);
-    } else
+    }
+    else
       console.log('Kauf abgelehnt.');
   });
 
@@ -327,7 +358,8 @@ jQuery(function($)
     {
       console.log('Haus gekauft.');
       socket.emit('buy house!', uniqueId, getRoomNumber(), currentField);
-    } else
+    }
+    else
       console.log('Kauf abgelehnt.');
   });
 
@@ -342,13 +374,16 @@ jQuery(function($)
     if(fieldNr < 12)
     {
       cssclass = 'img-owner-top';
-    } else if(fieldNr < 21)
+    }
+    else if(fieldNr < 21)
     {
       cssclass = 'img-owner-right';
-    } else if(fieldNr < 30)
+    }
+    else if(fieldNr < 30)
     {
       cssclass = 'img-owner-right';
-    } else
+    }
+    else
     {
       cssclass = 'img-owner-left';
     }
@@ -356,9 +391,18 @@ jQuery(function($)
     $("#fieldowner" + (fieldNr)).append('<img id="owner-' + (fieldNr) + '" class="' + cssclass + '" src="media/houses/' + pNr + '-0.png" />');
   });
 
-  socket.on('throw in prison', function()
+  socket.on('popup', function(text)
   {
-    alert('Du musst ins Gefängnis!');
+    alert(text);
+  });
+
+  socket.on('private popup', function(uid, msg)
+  {
+    if(uniqueId != uid)
+    {
+      return;
+    }
+    alert(msg);
   });
 });
 
@@ -419,6 +463,7 @@ function isReady()
 
 function throwDices()
 {
+  socket.emit('update playerinfo', uniqueId, getRoomNumber());
   $('#dice1').attr('class', 'die');
   $('#dice2').attr('class', 'die');
   socket.emit('throw dices', uniqueId, getRoomNumber());
@@ -430,6 +475,11 @@ function getFieldInfo(fieldNr)
   socket.emit('show fieldinfo', fieldNr);
   $('#fieldNr').text(fieldNr);
   tab(2);
+}
+
+function showPlayerInfo(pNr)
+{
+  socket.emit('show foreign playerinfo', getRoomNumber(), pNr);
 }
 
 function leaveGame()

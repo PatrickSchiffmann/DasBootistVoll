@@ -82,6 +82,11 @@ io.sockets.on('connection', function(socket)
     myGame.removePlayer(leaving_player, roomID);
     io.sockets.in(socket.room).emit('update playernumber', myGame.getRoomByID(roomID).getNrPlayers());
 
+    if(current_room.getNrPlayers() == 0)
+    {
+      return;
+    }
+
     try
     {
       current_room.getCurrentPlayer().getName();
@@ -187,12 +192,30 @@ io.sockets.on('connection', function(socket)
     var currentPlayer = myGame.getRoomByID(roomID).findPlayerByUID(uid);
     var info = {};
 
+    info['charID'] = currentPlayer.getCharID() + 1;
+    info['name'] = currentPlayer.getName();
     info['charName'] = currentPlayer.getCharacter().getName();
     info['status'] = currentPlayer.getStatus();
     info['income'] = currentPlayer.getSalary();
     info['moneysack'] = currentPlayer.getMoney();
 
     socket.emit('receive playerinfo', JSON.stringify(info));
+  });
+
+  socket.on('show foreign playerinfo', function(roomID, pNr)
+  {
+    var info = {};
+    var current_room = myGame.getRoomByID(roomID);
+    var f_player = current_room.findPlayerByPlayerNr(pNr);
+
+    info['charID'] = f_player.getCharID() + 1;
+    info['name'] = f_player.getName();
+    info['charName'] = f_player.getCharacter().getName();
+    info['status'] = f_player.getStatus();
+    info['income'] = f_player.getSalary();
+    info['moneysack'] = f_player.getMoney();
+
+    socket.emit('receive foreign playerinfo', JSON.stringify(info));
   });
 
   socket.on('get characters', function()
@@ -243,7 +266,6 @@ io.sockets.on('connection', function(socket)
     var currentBoard = current_room.getBoard();
     var player = current_room.findPlayerByUID(uid);
 
-
     var roll1 = myDice.roll();
     var roll2 = myDice.roll();
 
@@ -270,7 +292,7 @@ io.sockets.on('connection', function(socket)
     }
     else if(fieldType == FELONY)
     {
-      socket.emit('throw in prison');
+      socket.emit('popup', 'Du musst ins Gefängis!');
       player.setField(31);
       player.throwInPrison(3);
     }
@@ -332,8 +354,11 @@ io.sockets.on('connection', function(socket)
     current_room.nextPlayer();
     while(current_room.getCurrentPlayer().isInPrison() != 0)
     {
-      var rounds = current_room.getCurrentPlayer().isInPrison();
-      current_room.getCurrentPlayer().throwInPrison(rounds - 1);
+      var p = current_room.getCurrentPlayer();
+      var rounds = p.isInPrison();
+      p.throwInPrison(rounds - 1);
+      var msg = 'Du bist noch ' + p.isInPrison() + ' Runden im Gefängis.';
+      io.sockets.in(socket.room).emit('private popup', p.getUniqueID(), msg);
       current_room.nextPlayer();
     }
 

@@ -18,42 +18,42 @@
 <div id="playerlist">
   <!-- to be filled dynamically -->
   <div class="listedPlayer listedPlayer1">
-    <img class="playerlistPic" id="charPic1"/>
+    <img class="playerlistPic" id="charPic1" onclick="showPlayerInfo(1)"/>
 
     <div class="playerListName1"></div>
   </div>
   <div class="listedPlayer listedPlayer2">
-    <img class="playerlistPic" id="charPic2"/>
+    <img class="playerlistPic" id="charPic2" onclick="showPlayerInfo(2)"/>
 
     <div class="playerListName2"></div>
   </div>
   <div class="listedPlayer listedPlayer3">
-    <img class="playerlistPic" id="charPic3"/>
+    <img class="playerlistPic" id="charPic3" onclick="showPlayerInfo(3)"/>
 
     <div class="playerListName3"></div>
   </div>
   <div class="listedPlayer listedPlayer4">
-    <img class="playerlistPic" id="charPic4"/>
+    <img class="playerlistPic" id="charPic4" onclick="showPlayerInfo(4)"/>
 
     <div class="playerListName4"></div>
   </div>
   <div class="listedPlayer listedPlayer5">
-    <img class="playerlistPic" id="charPic5"/>
+    <img class="playerlistPic" id="charPic5" onclick="showPlayerInfo(5)"/>
 
     <div class="playerListName5"></div>
   </div>
   <div class="listedPlayer listedPlayer6">
-    <img class="playerlistPic" id="charPic6"/>
+    <img class="playerlistPic" id="charPic6" onclick="showPlayerInfo(6)"/>
 
     <div class="playerListName6"></div>
   </div>
   <div class="listedPlayer listedPlayer7">
-    <img class="playerlistPic" id="charPic7"/>
+    <img class="playerlistPic" id="charPic7" onclick="showPlayerInfo(7)"/>
 
     <div class="playerListName7"></div>
   </div>
   <div class="listedPlayer listedPlayer8">
-    <img class="playerlistPic" id="charPic8"/>
+    <img class="playerlistPic" id="charPic8" onclick="showPlayerInfo(8)"/>
 
     <div class="playerListName8"></div>
   </div>
@@ -68,9 +68,11 @@
     <div id="popup-button-ok">
       <img id="popup-button-ok-img" alt="OK" onClick="closePopup()" class="popup-button">
     </div>
+    <!--
     <div id="popup-button-cancel">
       <img id="popup-button-cancel-img" alt="Abbrechen" onClick="closePopup()" class="popup-button">
     </div>
+    -->
   </div>
 </div>
 <div id="boardwrap">
@@ -220,6 +222,7 @@
 <div id="panelwrapper">
   <div class="paneltab active" id="reiterPlayer" onclick="tab(1)"> Spieler</div>
   <div class="paneltab" id="reiterStreet" onclick="tab(2)"> Straße</div>
+  <div class="paneltab" id="reiterStatus" onclick="tab(3)"> Status</div>
   <div class="ghostpanel"></div>
   <div id="infopanel">
     <div id="infopanel2">
