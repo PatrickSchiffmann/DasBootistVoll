@@ -54,6 +54,19 @@ var myGame = new Game();
 myGame.initialise();
 var myDice = new Dice();
 
+
+//Replaces HTML special chars in user input by their escape strings
+function escapeHtml(text) {
+  var map = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#039;'
+  };
+  return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
 io.sockets.on('connection', function(socket)
 {
   socket.on('disconnect', function()
@@ -403,10 +416,10 @@ io.sockets.on('connection', function(socket)
     {
       return;
     }
-
+	
     var chat = {};
     chat['name'] = socket.name;
-    chat['msg'] = data;
+    chat['msg'] = escapeHtml(data);
 
     io.sockets.in(socket.room).emit('new chat message', JSON.stringify(chat));
   });

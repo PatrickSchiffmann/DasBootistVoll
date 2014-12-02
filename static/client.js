@@ -163,7 +163,6 @@ jQuery(function($)
       return;
 
     var message = $('#chatinput').val();
-    message = message.replace(';', '').replace('<', '').replace('>', '');
 
     socket.emit('send message', message);
     $('#chatinput').val('');
