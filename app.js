@@ -450,4 +450,11 @@ io.sockets.on('connection', function(socket)
     console.log('player ' + player.getName() + ' buys house [' + board[currentField - 1].getHouses() + '] on ' + currentField)
     player.pay(housePrice);
   });
+  
+  socket.on('request status', function()
+  {
+	var current_room = myGame.getRoomByID(socket.room);
+	var player = current_room.findPlayerByUID(socket.uid)
+    socket.emit('receive status', player.getAge());
+  });
 });

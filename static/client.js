@@ -50,6 +50,7 @@ function tab(tab_index)
     }
     else if(tab_index == 3)
     {
+	  socket.emit("request status");
       $('#tabPlayer').hide();
       $('#tabStreet').hide();
       $('#tabStatus').show();
@@ -172,6 +173,12 @@ jQuery(function($)
   {
     $('#name').text(data);
   });
+  
+  socket.on('receive status', function(data)
+  {
+    $('#tabStatus').text(data);
+  });
+
 
   socket.on('receive playerinfo', function(data)
   {
