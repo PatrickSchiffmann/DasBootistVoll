@@ -8,12 +8,10 @@ function Room(id)
   var playing_ = [];
   var riskCards_ = null;
   var jobCards_ = null;
-  var nrPlayers_ = 0;
   var colors_ = [null, null, null, null, null, null];
   var closed_ = false;
   var currentPlayerIndex_ = 1;
   var board_ = null;
-  var activePlayer_ = [];
 
   this.addPlayer = function(player)
   {
@@ -22,14 +20,13 @@ function Room(id)
 
   this.removePlayer = function(player)
   {
-    nrPlayers_ = nrPlayers_ - 1;
-    console.log("after removal : " + nrPlayers_ + ' players');
     colors_[player.getPlayerNr() - 1] = null;
     var index = playing_.indexOf(player);
     if(index > -1)
     {
       playing_.splice(index, 1);
     }
+    console.log('after removal : ' + playing_.length + ' players');
   }
 
   this.generatePlayerNr = function()
@@ -46,7 +43,7 @@ function Room(id)
 
   this.isReady = function()
   {
-    if(nrPlayers_ > 1)
+    if(playing_.length > 1)
       return true;
     else
       return false;
@@ -100,11 +97,6 @@ function Room(id)
   this.setJobCards = function(cards)
   {
     jobCards_ = cards;
-  }
-
-  this.setNrPlayers = function(nr)
-  {
-    nrPlayers_ = nr;
   }
 
   this.setClosed = function(bool)

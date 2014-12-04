@@ -41,6 +41,7 @@ function Player(name, playerNr)
   var ready_ = false;
   var ownedFields = [];
   var unique_id_ = generateUniqueID();
+  var was_in_prison_ = false;
 
   this.buyField = function(nr) {
     ownedFields.push(nr);
@@ -144,6 +145,7 @@ function Player(name, playerNr)
   {
     console.log(name_ + ' [' + playerNr_ + '] => ' + unique_id_ + ' thrown in prison (' + turns + ')');
     in_prison_ = turns;
+    was_in_prison_ = true;
   }
 
   this.setCharName = function(charName) {charName_ = charName;}
@@ -180,15 +182,24 @@ function Player(name, playerNr)
   {
   }
 
-  //Eigene Funktionen
   this.makeMove = function(diceResult)
   {
     field_ += diceResult;
-    if(field_ > 40)
+    if(field_ <= 40)
     {
-      field_ -= 40;
+      return;
+    }
+
+    field_ -= 40;
+    if(!was_in_prison_)
+    {
       money_ += this.getSalary();
     }
+    else
+    {
+      console.log('player ' + name_ + ' was in prison => kein gehalt!');
+    }
+    was_in_prison_ = false;
   }
 
   this.getStatus = function()

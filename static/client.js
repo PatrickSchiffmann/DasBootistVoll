@@ -50,7 +50,7 @@ function tab(tab_index)
     }
     else if(tab_index == 3)
     {
-	  socket.emit("request status");
+	    socket.emit("request status");
       $('#tabPlayer').hide();
       $('#tabStreet').hide();
       $('#tabStatus').show();
@@ -330,7 +330,7 @@ jQuery(function($)
     {
       $('#button-dices').prop('disabled', false).focus();
       // TODO: your-turn-popup
-      alert('Du bist dran!');
+      //alert('Du bist dran!');
     }
     else
     {

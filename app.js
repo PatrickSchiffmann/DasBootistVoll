@@ -370,7 +370,15 @@ io.sockets.on('connection', function(socket)
       var p = current_room.getCurrentPlayer();
       var rounds = p.isInPrison();
       p.throwInPrison(rounds - 1);
-      var msg = 'Du bist noch ' + p.isInPrison() + ' Runden im Gefängis.';
+      var msg;
+      if(p.isInPrison() > 0)
+      {
+        msg = 'Du bist noch ' + p.isInPrison() + ' Runde(n) im Gefängis.';
+      }
+      if(p.isInPrison() == 0)
+      {
+        msg = 'Du kannst wieder aus dem Gefängis und bist beim nächsten Mal wieder dran!';
+      }
       io.sockets.in(socket.room).emit('private popup', p.getUniqueID(), msg);
       current_room.nextPlayer();
     }

@@ -349,6 +349,14 @@ div#options img {
   display: none;
 }
 
+#tabStatus {
+  display: none;
+}
+
+#statustable {
+  font-size: 75%;
+}
+
 #avatar-self {
   width: 30%;
   margin-left: auto;
