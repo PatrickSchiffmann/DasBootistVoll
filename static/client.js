@@ -176,7 +176,11 @@ jQuery(function($)
   
   socket.on('receive status', function(data)
   {
-    $('#tabStatus').text(data);
+	data = jQuery.parseJSON(data)
+	var key;
+	for (key in data) {
+	  $('#statustab-' + key).text(data[key]);
+	}
   });
 
 

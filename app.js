@@ -453,8 +453,35 @@ io.sockets.on('connection', function(socket)
   
   socket.on('request status', function()
   {
+	//Prevent crash if user is not yet in room
+	if(socket.room == null || socket.uid == null)
+		return 0;
+		
 	var current_room = myGame.getRoomByID(socket.room);
 	var player = current_room.findPlayerByUID(socket.uid)
-    socket.emit('receive status', player.getAge());
+	
+	var info = {};
+
+    info['sex'] = player.getSex();
+	info['majority'] = player.getMajority();
+	info['age'] = player.getAge();
+	info['education'] = player.getEducationLevel();
+	
+	info['language'] = player.getLanguage();
+	info['HrTrainer'] = player.getHrTrainer();
+	info['Licence'] = player.getLicence();
+	info['It'] = player.getIt();
+	info['Mba'] = player.getMba();
+	
+	info['EuCitizen'] = player.getEuCitizen();
+	info['Nostrification'] = player.getNostrification();
+	info['Residency'] = player.getResidency();
+	
+	info['Car'] = player.getCar();
+	info['FreeLawyers'] = player.getFreeLawyers();
+	info['FreeCarRepairs'] = player.getFreeCarRepairs();
+	info['FreeJailbreaks'] = player.getFreeJailbreaks();
+
+    socket.emit('receive status', JSON.stringify(info));
   });
 });
