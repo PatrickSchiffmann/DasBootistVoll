@@ -108,9 +108,9 @@ function jobPopup(text)
 {
   if(popup_zustand == false)
   {
-    $("#popup").css("background", "url('media/job.png')");
+    $("#popup").css("background", "url('../media/popups/job.svg')");
     $("#popup-text").text(text);
-    $("#popup-button-ok-img").attr("src", "media/button-job-ok.png");
+    $("#popup-button-ok-img").attr("src", "media/popups/button-job-ok.png");
     //$("#popup-button-cancel-img").attr("src", "media/button-job-cancel.png");
     $("#popup").fadeIn("normal");
     $("#hintergrund").css("opacity", "0.7").fadeIn("normal");
@@ -122,11 +122,11 @@ function riskPopup(text)
 {
   if(popup_zustand == false)
   {
-    $("#popup").css("background", "url('media/risk.png')");
+    $("#popup").css("background", "url('media/popups/risk.svg')");
     $("#popup-content").css("margin-left", "64px");
     $("#popup-buttons").css("margin-left", "64px");
     $("#popup-text").text(text);
-    $("#popup-button-ok-img").attr("src", "media/button-risk-ok.png");
+    $("#popup-button-ok-img").attr("src", "media/popups/button-risk-ok.png");
     //$("#popup-button-cancel-img").attr("src", "media/button-risk-cancel.png");
     $("#popup").fadeIn("normal");
     $("#hintergrund").css("opacity", "0.7").fadeIn("normal");
@@ -226,7 +226,7 @@ jQuery(function($)
   socket.on('show figures', function(playerNr, currentField)
   {
     $("#figure-" + (playerNr + 1)).remove();
-    $("#field" + currentField).append('<img id="figure-' + (playerNr + 1) + '" src="media/player/p' + (playerNr + 1) + '.png" />');
+    $("#field" + currentField).append('<img id="figure-' + (playerNr + 1) + '" src="../media/player/p%20(' + (playerNr + 1) + ').svg" />');
   });
 
   socket.on('receive fieldinfo', function(data)

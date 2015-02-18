@@ -460,75 +460,63 @@ span {
   font-weight: bold;
 }
 
-.figure1 {
+#figure-1 {
   margin: 0;
   padding: 0;
   z-index: 1;
-  background-color: yellow;
   border-radius: 50%;
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid gray;
+  width: 42px !important;
+  height: 42px !important;
   float: left;
 }
 
-.figure2 {
+#figure-2 {
   margin: 0;
   padding: 0;
   z-index: 1;
-  background-color: green;
   border-radius: 50%;
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid gray;
+  width: 42px !important;
+  height: 42px !important;
   float: left;
 }
 
-.figure3 {
+#figure-3 {
   margin: 0;
   padding: 0;
   z-index: 1;
-  background-color: blue;
   border-radius: 50%;
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid gray;
+  width: 42px !important;
+  height: 42px !important;
   float: left;
 }
 
-.figure4 {
+#figure-4 {
   margin: 0;
   padding: 0;
   z-index: 1;
-  background-color: red;
   border-radius: 50%;
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid gray;
+  width: 42px !important;
+  height: 42px !important;
   float: left;
 }
 
-.figure5 {
+#figure-5 {
   margin: 0;
   padding: 0;
   z-index: 1;
-  background-color: white;
   border-radius: 50%;
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid gray;
+  width: 42px !important;
+  height: 42px !important;
   float: left;
 }
 
-.figure6 {
+#figure-6 {
   margin: 0;
   padding: 0;
   z-index: 1;
-  background-color: black;
   border-radius: 50%;
-  width: 1rem;
-  height: 1rem;
-  border: 1px solid gray;
+  width: 42px !important;
+  height: 42px !important;
   float: left;
 }
 
@@ -602,242 +590,242 @@ td.noPointer:hover {
 }
 
 .listedPlayer1 {
-  background-image: url('../media/player/pf1.png');
+  background-image: url('../media/player/pf%20(1).svg');
   visibility: hidden;
 }
 
 .listedPlayer2 {
-  background-image: url('../media/player/pf2.png');
+  background-image: url('../media/player/pf%20(2).svg');
   visibility: hidden;
 }
 
 .listedPlayer3 {
-  background-image: url('../media/player/pf3.png');
+  background-image: url('../media/player/pf%20(3).svg');
   visibility: hidden;
 }
 
 .listedPlayer4 {
-  background-image: url('../media/player/pf4.png');
+  background-image: url('../media/player/pf%20(4).svg');
   visibility: hidden;
 }
 
 .listedPlayer5 {
-  background-image: url('../media/player/pf5.png');
+  background-image: url('../media/player/pf%20(5).svg');
   visibility: hidden;
 }
 
 .listedPlayer6 {
-  background-image: url('../media/player/pf6.png');
+  background-image: url('../media/player/pf%20(6).svg');
   visibility: hidden;
 }
 
 .listedPlayer7 {
-  background-image: url('../media/player/pf7.png');
+  background-image: url('../media/player/pf%20(7).svg');
   visibility: hidden;
 }
 
 .listedPlayer8 {
-  background-image: url('../media/player/pf8.png');
+  background-image: url('../media/player/pf%20(8).svg');
   visibility: hidden;
 }
 
 #field1 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-01.svg');
+  background-image: url('../media/fields/field%20(1).svg');
   background-repeat: no-repeat;
 }
 
 #field2 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-02.svg');
+  background-image: url('../media/fields/field%20(2).svg');
   background-repeat: no-repeat;
 }
 
 #field3 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-03.svg');
+  background-image: url('../media/fields/field%20(3).svg');
   background-repeat: no-repeat;
 }
 
 #field4 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-04.svg');
+  background-image: url('../media/fields/field%20(4).svg');
   background-repeat: no-repeat;
 }
 
 #field5 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-05.svg');
+  background-image: url('../media/fields/field%20(5).svg');
   background-repeat: no-repeat;
 }
 
 #field6 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-06.svg');
+  background-image: url('../media/fields/field%20(6).svg');
   background-repeat: no-repeat;
 }
 
 #field7 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-07.svg');
+  background-image: url('../media/fields/field%20(7).svg');
   background-repeat: no-repeat;
 }
 
 #field8 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-08.svg');
+  background-image: url('../media/fields/field%20(8).svg');
   background-repeat: no-repeat;
 }
 
 #field9 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-09.svg');
+  background-image: url('../media/fields/field%20(9).svg');
   background-repeat: no-repeat;
 }
 
 #field10 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-10.svg');
+  background-image: url('../media/fields/field%20(10).svg');
   background-repeat: no-repeat;
 }
 
 #field11 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-11.svg');
+  background-image: url('../media/fields/field%20(11).svg');
   background-repeat: no-repeat;
 }
 
 #field12 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-12.svg');
+  background-image: url('../media/fields/field%20(12).svg');
   background-repeat: no-repeat;
 }
 
 #field13 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-13.svg');
+  background-image: url('../media/fields/field%20(13).svg');
   background-repeat: no-repeat;
 }
 
 #field14 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-14.svg');
+  background-image: url('../media/fields/field%20(14).svg');
   background-repeat: no-repeat;
 }
 
 #field15 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-15.svg');
+  background-image: url('../media/fields/field%20(15).svg');
   background-repeat: no-repeat;
 }
 
 #field16 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-16.svg');
+  background-image: url('../media/fields/field%20(16).svg');
   background-repeat: no-repeat;
 }
 
 #field17 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-17.svg');
+  background-image: url('../media/fields/field%20(17).svg');
   background-repeat: no-repeat;
 }
 
 #field18 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-18.svg');
+  background-image: url('../media/fields/field%20(18).svg');
   background-repeat: no-repeat;
 }
 
 #field19 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-19.svg');
+  background-image: url('../media/fields/field%20(19).svg');
   background-repeat: no-repeat;
 }
 
 #field20 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-20.svg');
+  background-image: url('../media/fields/field%20(20).svg');
   background-repeat: no-repeat;
 }
 
 #field21 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-21.svg');
+  background-image: url('../media/fields/field%20(21).svg');
   background-repeat: no-repeat;
 }
 
 #field22 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-22.svg');
+  background-image: url('../media/fields/field%20(22).svg');
   background-repeat: no-repeat;
 }
 
 #field23 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-23.svg');
+  background-image: url('../media/fields/field%20(23).svg');
   background-repeat: no-repeat;
 }
 
 #field24 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-24.svg');
+  background-image: url('../media/fields/field%20(24).svg');
   background-repeat: no-repeat;
 }
 
 #field25 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-25.svg');
+  background-image: url('../media/fields/field%20(25).svg');
   background-repeat: no-repeat;
 }
 
 #field26 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-26.svg');
+  background-image: url('../media/fields/field%20(26).svg');
   background-repeat: no-repeat;
 }
 
 #field27 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-27.svg');
+  background-image: url('../media/fields/field%20(27).svg');
   background-repeat: no-repeat;
 }
 
 #field28 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-28.svg');
+  background-image: url('../media/fields/field%20(28).svg');
   background-repeat: no-repeat;
 }
 
 #field29 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-29.svg');
+  background-image: url('../media/fields/field%20(29).svg');
   background-repeat: no-repeat;
 }
 
 #field30 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-30.svg');
+  background-image: url('../media/fields/field%20(30).svg');
   background-repeat: no-repeat;
 }
 
 #field31 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-31.svg');
+  background-image: url('../media/fields/field%20(31).svg');
   background-repeat: no-repeat;
 }
 
 #field32 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-32.svg');
+  background-image: url('../media/fields/field%20(32).svg');
   background-repeat: no-repeat;
 }
 
 #field33 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-33.svg');
+  background-image: url('../media/fields/field%20(33).svg');
   background-repeat: no-repeat;
 }
 
 #field34 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-34.svg');
+  background-image: url('../media/fields/field%20(34).svg');
   background-repeat: no-repeat;
 }
 
 #field35 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-35.svg');
+  background-image: url('../media/fields/field%20(35).svg');
   background-repeat: no-repeat;
 }
 
 #field36 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-36.svg');
+  background-image: url('../media/fields/field%20(36).svg');
   background-repeat: no-repeat;
 }
 
 #field37 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-37.svg');
+  background-image: url('../media/fields/field%20(37).svg');
   background-repeat: no-repeat;
 }
 
 #field38 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-38.svg');
+  background-image: url('../media/fields/field%20(38).svg');
   background-repeat: no-repeat;
 }
 
 #field39 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-39.svg');
+  background-image: url('../media/fields/field%20(39).svg');
   background-repeat: no-repeat;
 }
 
 #field40 {
-  background-image: url('svg/SPIELBRETT_FÜR_WEB-40.svg');
+  background-image: url('../media/fields/field%20(40).svg');
   background-repeat: no-repeat;
 }
 
